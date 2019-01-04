@@ -4,9 +4,16 @@ const bodyParser = require('body-parser');
 const fallback = require('express-history-api-fallback');
 
 // const swaggerInit = require('../swagger');
-const serverConfig = require('../server.config');
+const serverConfig = require('../server.config')(process.env);
 // const DBconnect = require('./DBconnect');
-const apiRoutes = require('./router');
+const apiRoutes = require('./api.routes');
+
+console.log(serverConfig);
+console.log('================');
+console.log(process.env.NODE_ENV);
+console.log(process.env.PORT);
+
+process.exit();
 
 const api = require('../common/api');
 const app = express();
@@ -46,4 +53,4 @@ app.use(api.API_PATH, apiRoutes);
 // swaggerInit(app, api.API_PATH);
 // DBconnect(app);
 
-app.listen(process.env.PORT || serverConfig.port);
+app.listen(serverConfig.port);
