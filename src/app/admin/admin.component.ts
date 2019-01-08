@@ -6,13 +6,17 @@ import { UserService } from '../_services';
 
 @Component({ templateUrl: 'admin.component.html' })
 export class AdminComponent implements OnInit {
-    users: User[] = [];
+  users: User[] = [];
 
-    constructor(private userService: UserService) { }
+  constructor(private userService: UserService) { }
 
-    ngOnInit() {
-        this.userService.getAll().pipe(first()).subscribe(users => {
-            this.users = users;
-        });
-    }
+  ngOnInit() {
+    this.userService.getTestData().subscribe(resp => {
+      console.log('getTestData', resp);
+    });
+
+    this.userService.getAll().pipe(first()).subscribe(users => {
+      this.users = users;
+    });
+  }
 }

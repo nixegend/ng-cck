@@ -13,6 +13,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       { id: 2, username: 'user', password: 'user', firstName: 'Normal', lastName: 'User', role: Role.User }
     ];
 
+    console.log(request.url);
+
     const authHeader = request.headers.get('Authorization');
     const isLoggedIn = authHeader && authHeader.startsWith('Bearer fake-jwt-token');
     const roleString = isLoggedIn && authHeader.split('.')[1];

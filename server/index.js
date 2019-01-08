@@ -4,16 +4,9 @@ const bodyParser = require('body-parser');
 const fallback = require('express-history-api-fallback');
 
 // const swaggerInit = require('../swagger');
-const serverConfig = require('../server.config')(process.env);
+const serverConfig = require('./config');
 // const DBconnect = require('./DBconnect');
 const apiRoutes = require('./api.routes');
-
-console.log(serverConfig);
-console.log('================');
-console.log(process.env.NODE_ENV);
-console.log(process.env.PORT);
-
-process.exit();
 
 const api = require('../common/api');
 const app = express();
@@ -31,8 +24,8 @@ const corsOptionsDelegate = (req, callback) => {
 
 app.use(cors(corsOptionsDelegate)); // CORS middleware on express side
 
-app.use(express.static(serverConfig.static));
-app.use(express.static(serverConfig.dist));
+app.use(express.static(__dirname + serverConfig.static));
+app.use(express.static(__dirname + serverConfig.dist));
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -53,4 +46,8 @@ app.use(api.API_PATH, apiRoutes);
 // swaggerInit(app, api.API_PATH);
 // DBconnect(app);
 
-app.listen(serverConfig.port);
+console.log(serverConfig);
+
+app.listen(serverConfig.port, () => {
+  console.log('server is available by: ', `http://${serverConfig.host}:${serverConfig.port}`);
+});
