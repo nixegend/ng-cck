@@ -2,7 +2,7 @@
   "name": "ng-cck",
   "version": "0.0.0",
   "scripts": {
-    "server": "cross-env NODE_ENV=development nodemon ./server/index.js",
+    "server": "cross-env NODE_ENV=development nodemon ./server",
     "start": "ng serve --proxy-config proxy.config.json -o",
     "build": "ng build",
     "test": "ng test",

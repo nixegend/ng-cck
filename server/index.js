@@ -29,13 +29,13 @@ app.use(express.static(__dirname + serverConfig.dist));
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.use(fallback(`${serverConfig.src}/index.html`));
+app.use(fallback(__dirname + `${serverConfig.src}/index.html`));
 
 // app.all('/api/*', requireAuthentication);
 
 app.get('/*', (req, res, next) => {
   if (req.url.indexOf(api.API_PATH) === -1) {
-    res.sendFile(`${serverConfig.src}/index.html`);
+    res.sendFile(__dirname + `${serverConfig.src}/index.html`);
   }
 
   next();
