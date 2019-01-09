@@ -10,11 +10,13 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 // used to create fake backend
 // import { fakeBackendProvider } from './_helpers';
 
-import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { reducers } from './app.reducers';
 
-import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { ErrorInterceptor } from './helpers/error.interceptor';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+
+import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';

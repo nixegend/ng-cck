@@ -1,25 +1,25 @@
 ﻿import { Component } from '@angular/core';
 import { first } from 'rxjs/operators';
 
-import { User } from '../_models';
+import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent {
-    currentUser: User;
-    userFromApi: User;
+  currentUser: User;
+  userFromApi: User;
 
-    constructor(
-        private userService: UserService,
-        private authenticationService: AuthenticationService
-    ) {
-        this.currentUser = this.authenticationService.currentUserValue;
-    }
+  constructor(
+    private userService: UserService,
+    private authenticationService: AuthenticationService
+  ) {
+    this.currentUser = this.authenticationService.currentUserValue;
+  }
 
-    ngOnInit() {
-        this.userService.getById(this.currentUser.id).pipe(first()).subscribe(user => {
-            this.userFromApi = user;
-        });
-    }
+  ngOnInit() {
+    this.userService.getById(this.currentUser.id).pipe(first()).subscribe(user => {
+      this.userFromApi = user;
+    });
+  }
 }

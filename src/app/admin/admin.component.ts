@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 
-import { User } from '../_models';
+import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 
 @Component({ templateUrl: 'admin.component.html' })
