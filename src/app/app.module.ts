@@ -13,8 +13,9 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { routing } from './app.routing';
 import { reducers } from './app.reducers';
 
-import { ErrorInterceptor } from './helpers/error.interceptor';
-import { JwtInterceptor } from './helpers/jwt.interceptor';
+// import { AuthInterceptor } from './auth/auth-interceptor';
+import { ErrorInterceptor } from './auth/error.interceptor';
+import { JwtInterceptor } from './auth/jwt.interceptor';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -49,6 +50,7 @@ import { TestPageComponent } from './test-page/test-page.component';
     NotFoundComponent,
     TestPageComponent],
   providers: [
+    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 

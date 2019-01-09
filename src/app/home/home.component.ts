@@ -2,8 +2,8 @@
 import { first } from 'rxjs/operators';
 
 import { User } from '../models/user';
-import { UserService } from '../services/user.service';
-import { AuthenticationService } from '../services/authentication.service';
+import { UserService } from '../auth/user.service';
+import { AuthenticationService } from '../auth/authentication.service';
 
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent {
