@@ -2,7 +2,7 @@
 import { first } from 'rxjs/operators';
 
 import { User } from '../_models';
-import { UserService } from '../_services';
+import { UserService } from '../services/user.service';
 
 @Component({ templateUrl: 'admin.component.html' })
 export class AdminComponent implements OnInit {
