@@ -3,10 +3,11 @@
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './guards/auth.guard';
+import { RegisterComponent } from './register/register.component';
 import { TestPageComponent } from './test-page/test-page.component'
 import { NotFoundComponent } from './not-found/not-found.component'
 
+import { AuthGuard } from './guards/auth.guard';
 import { Role } from './models/role';
 
 export const routing: Routes = [
@@ -29,6 +30,10 @@ export const routing: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'signup',
+    component: RegisterComponent
   },
   { path: '**', component: NotFoundComponent }
 ];

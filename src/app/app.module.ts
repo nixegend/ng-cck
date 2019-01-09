@@ -1,5 +1,6 @@
 ﻿import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
+import { FormsModule }   from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -21,6 +22,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './not-found/not-found.component'
 
 import { environment } from '../environments/environment';
@@ -31,6 +33,7 @@ import { TestPageComponent } from './test-page/test-page.component';
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule,
     // as main store
     StoreModule.forRoot(reducers),
     RouterModule.forRoot(routing),
@@ -47,6 +50,7 @@ import { TestPageComponent } from './test-page/test-page.component';
     HomeComponent,
     AdminComponent,
     LoginComponent,
+    RegisterComponent,
     NotFoundComponent,
     TestPageComponent],
   providers: [
