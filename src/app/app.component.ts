@@ -1,7 +1,7 @@
 ﻿import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthenticationService } from './auth/authentication.service';
+import { AuthService } from './auth/auth.service';
 import { Role } from './models/role';
 import { User } from './models/user';
 
@@ -11,9 +11,9 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authService: AuthService
   ) {
-    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    this.authService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   get isAdmin() {
@@ -21,7 +21,7 @@ export class AppComponent {
   }
 
   logout() {
-    this.authenticationService.logout();
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 }

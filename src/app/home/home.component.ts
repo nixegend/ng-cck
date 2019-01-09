@@ -3,7 +3,7 @@ import { first } from 'rxjs/operators';
 
 import { User } from '../models/user';
 import { UserService } from '../auth/user.service';
-import { AuthenticationService } from '../auth/authentication.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent {
@@ -12,9 +12,9 @@ export class HomeComponent {
 
   constructor(
     private userService: UserService,
-    private authenticationService: AuthenticationService
+    private authService: AuthService
   ) {
-    this.currentUser = this.authenticationService.currentUserValue;
+    this.currentUser = this.authService.currentUserValue;
   }
 
   ngOnInit() {
