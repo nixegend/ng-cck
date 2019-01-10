@@ -7,7 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { TestPageComponent } from './test-page/test-page.component'
 import { NotFoundComponent } from './not-found/not-found.component'
 
-import { AuthGuard } from './guards/auth.guard';
+import { AuthGuard } from './auth/auth.guard';
 import { Role } from './models/role';
 
 export const routing: Routes = [

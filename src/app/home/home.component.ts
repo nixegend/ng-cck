@@ -5,7 +5,10 @@ import { User } from '../models/user';
 import { UserService } from '../auth/user.service';
 import { AuthService } from '../auth/auth.service';
 
-@Component({ templateUrl: 'home.component.html' })
+@Component({
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
+})
 export class HomeComponent {
   currentUser: User;
   userFromApi: User;

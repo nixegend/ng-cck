@@ -8,15 +8,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
-// used to create fake backend
-// import { fakeBackendProvider } from './_helpers';
-
 import { routing } from './app.routing';
 import { reducers } from './app.reducers';
 
-import { AuthInterceptor } from './auth/auth-interceptor';
+import { AuthInterceptor } from './auth/auth.interceptor';
 import { ErrorInterceptor } from './auth/error.interceptor';
-// import { JwtInterceptor } from './auth/jwt.interceptor';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -24,9 +20,9 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './not-found/not-found.component'
+import { TestPageComponent } from './test-page/test-page.component';
 
 import { environment } from '../environments/environment';
-import { TestPageComponent } from './test-page/test-page.component';
 
 @NgModule({
   imports: [
@@ -55,11 +51,7 @@ import { TestPageComponent } from './test-page/test-page.component';
     TestPageComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
-    // provider used to create fake backend
-    // fakeBackendProvider
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
