@@ -1,22 +1,17 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { first } from 'rxjs/operators';
 
 import { User } from '../models/user';
-import { UserService } from '../auth/user.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({ templateUrl: 'admin.component.html' })
 export class AdminComponent implements OnInit {
   users: User[] = [];
 
-  constructor(private userService: UserService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.userService.getTestData().subscribe(resp => {
+    this.authService.getTestData().subscribe(resp => {
       console.log('getTestData', resp);
-    });
-
-    this.userService.getAll().pipe(first()).subscribe(users => {
-      this.users = users;
     });
   }
 }

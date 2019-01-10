@@ -5,7 +5,10 @@ import { AuthService } from './auth/auth.service';
 import { Role } from './models/role';
 import { User } from './models/user';
 
-@Component({ selector: 'app-root', templateUrl: 'app.component.html' })
+@Component({
+  selector: 'app-root',
+  templateUrl: 'app.component.html'
+})
 export class AppComponent {
   currentUser: User;
 

@@ -33,6 +33,10 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
+  getTestData() {
+    return this.http.get(`/api/test`);
+  }
+
   attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {
     return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptions);
   }
