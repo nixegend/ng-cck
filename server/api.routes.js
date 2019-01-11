@@ -15,6 +15,8 @@ const api = require('../common/api');
 //   .put(GlslPrograms.updateGLSLProgramById)
 //   .delete(GlslPrograms.removeGLSLProgramById);
 
+// router.post('/register',
+
 // router.post('/api/auth/signup', [verifySignUp.checkDuplicateUserNameOrEmail, verifySignUp.checkRolesExisted], controller.signup);
 
 // router.post('/api/auth/signin', controller.signin);

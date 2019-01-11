@@ -5,6 +5,7 @@
 
 module.exports = {
   host: 'localhost',
+  secret: 'worldisfullofdevelopers',
   port: (process.env.NODE_ENV === 'development') ? 8888 : process.env.PORT,
   origin: 'http://localhost:4200',
   src: '../src',

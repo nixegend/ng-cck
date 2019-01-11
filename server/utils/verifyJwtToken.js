@@ -1,14 +1,15 @@
 const jwt = require('jsonwebtoken');
-const config = require('../config/config.js');
+const config = require('../config.js');
 const db = require('../config/db.config.js');
 const User = db.user;
 
-verifyToken = (req, res, next) => {
+const verifyToken = (req, res, next) => {
   let token = req.headers['x-access-token'];
 
   if (!token) {
     return res.status(403).send({
-      auth: false, message: 'No token provided.'
+      auth: false,
+      message: 'No token provided.'
     });
   }
 
@@ -19,12 +20,13 @@ verifyToken = (req, res, next) => {
         message: 'Fail to Authentication. Error -> ' + err
       });
     }
+
     req.userId = decoded.id;
     next();
   });
 }
 
-isAdmin = (req, res, next) => {
+const isAdmin = (req, res, next) => {
   User.findById(req.userId)
     .then(user => {
       user.getRoles().then(roles => {
@@ -42,30 +44,9 @@ isAdmin = (req, res, next) => {
     })
 }
 
-isPmOrAdmin = (req, res, next) => {
-  User.findById(req.userId)
-    .then(user => {
-      user.getRoles().then(roles => {
-        for (let i = 0; i < roles.length; i++) {
-          if (roles[i].name.toUpperCase() === "PM") {
-            next();
-            return;
-          }
-
-          if (roles[i].name.toUpperCase() === "ADMIN") {
-            next();
-            return;
-          }
-        }
-
-        res.status(403).send("Require PM or Admin Roles!");
-      })
-    })
-}
-
-const authJwt = {};
-authJwt.verifyToken = verifyToken;
-authJwt.isAdmin = isAdmin;
-authJwt.isPmOrAdmin = isPmOrAdmin;
+const authJwt = {
+  verifyToken: verifyToken,
+  isAdmin: isAdmin
+};
 
 module.exports = authJwt;
