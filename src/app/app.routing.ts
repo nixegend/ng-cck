@@ -35,5 +35,13 @@ export const routing: Routes = [
     path: 'signup',
     component: RegisterComponent
   },
-  { path: '**', component: NotFoundComponent }
+  {
+    path: 'home',
+    redirectTo: '',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
+  }
 ];

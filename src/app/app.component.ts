@@ -1,22 +1,24 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthService } from './auth/auth.service';
 import { Role } from './models/role';
 import { User } from './models/user';
+import { TokenStorageService } from './auth/token-storage.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   currentUser: User;
+  // private roles: string[];
+  private authority: string;
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private tokenStorage: TokenStorageService
   ) {
-    this.authService.currentUser.subscribe(x => this.currentUser = x);
+    // this.authService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   get isAdmin() {
@@ -24,7 +26,26 @@ export class AppComponent {
   }
 
   logout() {
-    this.authService.logout();
+    this.tokenStorage.clearSessionStorage();
     this.router.navigate(['/login']);
+  }
+
+  ngOnInit() {
+    console.log(this.tokenStorage.getToken());
+
+    if (this.tokenStorage.getToken()) {
+      // this.roles = this.tokenStorage.getAuthorities();
+      // this.roles.every(role => {
+      //   if (role === 'ROLE_ADMIN') {
+      //     this.authority = 'admin';
+      //     return false;
+      //   } else if (role === 'ROLE_PM') {
+      //     this.authority = 'pm';
+      //     return false;
+      //   }
+      //   this.authority = 'user';
+      //   return true;
+      // });
+    }
   }
 }
