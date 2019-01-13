@@ -2,9 +2,9 @@
   <a class="navbar-brand" href="#">LOGO</a>
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto">
-        <a class="nav-item nav-link" routerLink="/home">Home</a>
-        <a class="nav-item nav-link" routerLink="/test">Test</a>
-        <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
+      <a class="nav-item nav-link" routerLink="/home">Home</a>
+      <a class="nav-item nav-link" routerLink="/test">Test</a>
+      <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
     </ul>
     <div class="mt-2 mt-md-0">
       <button type="button" class="btn btn-outline-primary">Sign in</button>
@@ -15,6 +15,15 @@
 
 <div class="jumbotron">
   <div class="container">
+
+    <button (click)="increment()">Increment</button>
+
+    <div>Current Count: {{ count$ | async }}</div>
+
+    <button (click)="decrement()">Decrement</button>
+
+    <button (click)="reset()">Reset Counter</button>
+
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <router-outlet></router-outlet>

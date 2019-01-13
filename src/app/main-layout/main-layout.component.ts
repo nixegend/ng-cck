@@ -1,4 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { Increment, Decrement, Reset } from './ngrx/actions';
 import { Router } from '@angular/router';
 
 import { Role } from '../models/role';
@@ -10,15 +13,31 @@ import { TokenStorageService } from '../auth/token-storage.service';
   templateUrl: 'main-layout.component.html'
 })
 export class MainLayoutComponent implements OnInit {
+  count$: Observable<number>;
+
   currentUser: User;
   // private roles: string[];
   private authority: string;
 
   constructor(
+    private store: Store<{ counter: number }>,
     private router: Router,
     private tokenStorage: TokenStorageService
   ) {
+    this.count$ = store.pipe(select('counter'));
     // this.authService.currentUser.subscribe(x => this.currentUser = x);
+  }
+
+  increment() {
+    this.store.dispatch(new Increment());
+  }
+
+  decrement() {
+    this.store.dispatch(new Decrement());
+  }
+
+  reset() {
+    this.store.dispatch(new Reset());
   }
 
   get isAdmin() {
