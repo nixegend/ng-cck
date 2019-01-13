@@ -16,18 +16,11 @@
 <div class="jumbotron">
   <div class="container">
 
-    <button (click)="increment()">Increment</button>
-
     <div>Current Count: {{ count$ | async }}</div>
-
+    <button (click)="increment()">Increment</button>
     <button (click)="decrement()">Decrement</button>
-
     <button (click)="reset()">Reset Counter</button>
 
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
+    <router-outlet></router-outlet>
   </div>
 </div>

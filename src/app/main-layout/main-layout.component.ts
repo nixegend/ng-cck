@@ -20,11 +20,11 @@ export class MainLayoutComponent implements OnInit {
   private authority: string;
 
   constructor(
-    private store: Store<{ counter: number }>,
+    private store: Store<{ count: number }>,
     private router: Router,
     private tokenStorage: TokenStorageService
   ) {
-    this.count$ = store.pipe(select('counter'));
+    this.count$ = store.pipe(select('count'));
     // this.authService.currentUser.subscribe(x => this.currentUser = x);
   }
 
