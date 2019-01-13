@@ -12,9 +12,8 @@ import { Role } from './models/role';
 
 export const routing: Routes = [
   {
-    path: '',
-    component: HomeComponent,
-    canActivate: [AuthGuard]
+    path: 'home',
+    component: HomeComponent
   },
   {
     path: 'admin',
@@ -24,8 +23,7 @@ export const routing: Routes = [
   },
   {
     path: 'test',
-    component: TestPageComponent,
-    canActivate: [AuthGuard],
+    component: TestPageComponent
   },
   {
     path: 'login',
@@ -36,8 +34,8 @@ export const routing: Routes = [
     component: RegisterComponent
   },
   {
-    path: 'home',
-    redirectTo: '',
+    path: '',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
