@@ -5,10 +5,19 @@
 
 module.exports = {
   host: 'localhost',
-  secret: 'worldisfullofdevelopers',
+  jwtSecret: 'worldisfullofdevelopers',
+  tokenExpireTime: '6h',
   port: (process.env.NODE_ENV === 'development') ? 8888 : process.env.PORT,
   origin: 'http://localhost:4200',
   src: '../src',
   dist: '../dist',
-  static: '../src/assets'
+  static: '../src/assets',
+  // https://node-postgres.com/api/client
+  db: {
+    user: 'postgres',
+    password: '12345',
+    database: 'cck',
+    host: 'localhost',
+    port: 5432
+  }
 };

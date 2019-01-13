@@ -3,7 +3,7 @@ const express = require('express');
 
 // const authJwt = require('./utils/verifyJwtToken');
 // const verifySignUp = require('./utils/verifySignUp');
-const controller = require('./controllers/controller');
+const usersController = require('./controllers/users.controller');
 
 // const upload = multer(); // for parsing multipart/form-data
 const router = express.Router();
@@ -27,6 +27,6 @@ const api = require('../common/api');
 
 // router.get('/api/test/admin', [authJwt.verifyToken, authJwt.isAdmin], controller.adminBoard);
 
-router.get(api.GET_TEST_DATA, controller.getTestData);
+router.get(api.GET_TEST_DATA, usersController.getAllUsers);
 
 module.exports = router;

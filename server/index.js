@@ -3,9 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fallback = require('express-history-api-fallback');
 
-// const swaggerInit = require('../swagger');
 const serverConfig = require('./config');
-// const DBconnect = require('./DBconnect');
 const apiRoutes = require('./api.routes');
 
 const api = require('../common/api');
@@ -43,10 +41,7 @@ app.get('/*', (req, res, next) => {
 
 app.use(api.API_PATH, apiRoutes);
 
-// swaggerInit(app, api.API_PATH);
-// DBconnect(app);
-
-console.log(serverConfig);
+// console.log(serverConfig);
 
 app.listen(serverConfig.port, () => {
   console.log('server is available by: ', `http://${serverConfig.host}:${serverConfig.port}`);
