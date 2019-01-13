@@ -1,15 +1,15 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Role } from './models/role';
-import { User } from './models/user';
-import { TokenStorageService } from './auth/token-storage.service';
+import { Role } from '../models/role';
+import { User } from '../models/user';
+import { TokenStorageService } from '../auth/token-storage.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: 'app.component.html'
+  templateUrl: 'main-layout.component.html'
 })
-export class AppComponent implements OnInit {
+export class MainLayoutComponent implements OnInit {
   currentUser: User;
   // private roles: string[];
   private authority: string;
