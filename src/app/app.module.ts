@@ -4,9 +4,12 @@ import { FormsModule }   from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { MatDialogModule, MatButtonModule } from '@angular/material';
+import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
 
 import { routing } from './app.routing';
 import { reducers } from './app.reducers';
@@ -28,7 +31,10 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     HttpClientModule,
+    MatDialogModule,
+    MatButtonModule,
     FormsModule,
     // as main store
     StoreModule.forRoot(reducers),
@@ -42,6 +48,7 @@ import { environment } from '../environments/environment';
     }),
   ],
   declarations: [
+    SignInFormComponent,
     MainLayoutComponent,
     HomeComponent,
     AdminComponent,
@@ -49,6 +56,7 @@ import { environment } from '../environments/environment';
     RegisterComponent,
     NotFoundComponent,
     TestPageComponent],
+    entryComponents: [SignInFormComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
