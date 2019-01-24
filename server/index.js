@@ -6,7 +6,7 @@ const fallback = require('express-history-api-fallback');
 const serverConfig = require('./config');
 const apiRoutes = require('./api.routes');
 
-const api = require('../common/api');
+const api = require('./constants/api');
 const app = express();
 
 const corsOptions = {

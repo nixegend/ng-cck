@@ -6,7 +6,7 @@ import { TestPageComponent } from './test-page/test-page.component'
 import { NotFoundComponent } from './not-found/not-found.component'
 
 import { AuthGuard } from './auth/auth.guard';
-import { Role } from './models/role';
+import { UserRole } from './common/user-roles';
 
 export const routing: Routes = [
   {
@@ -17,7 +17,7 @@ export const routing: Routes = [
     path: 'admin',
     component: AdminComponent,
     canActivate: [AuthGuard],
-    data: { roles: [Role.Admin] }
+    data: { roles: [UserRole.ADMIN] }
   },
   {
     path: 'test',

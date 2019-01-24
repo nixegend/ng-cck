@@ -1,5 +1,6 @@
 ﻿import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { FormsModule }   from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,6 +14,7 @@ import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
 
 import { routing } from './app.routing';
 import { reducers } from './app.reducers';
+import { effects } from './app.effects';
 
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { ErrorInterceptor } from './auth/error.interceptor';
@@ -38,6 +40,7 @@ import { environment } from '../environments/environment';
     // as main store
     StoreModule.forRoot(reducers),
     RouterModule.forRoot(routing),
+    EffectsModule.forRoot(effects),
     // Connects RouterModule with StoreModule
     StoreRouterConnectingModule.forRoot(),
     // Instrumentation must be imported after importing StoreModule (config is optional)

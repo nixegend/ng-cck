@@ -8,7 +8,7 @@ const usersController = require('./controllers/users.controller');
 // const upload = multer(); // for parsing multipart/form-data
 const router = express.Router();
 
-const api = require('../common/api');
+const api = require('./constants/api');
 
 // router.route(`${api.GLSL_PROGRAMS_URL_PART}/:id`)
 //   .get(GlslPrograms.getFullOrPartOfGLSLProgramById)
@@ -27,6 +27,7 @@ const api = require('../common/api');
 
 // router.get('/api/test/admin', [authJwt.verifyToken, authJwt.isAdmin], controller.adminBoard);
 
-router.get(api.GET_TEST_DATA, usersController.getAllUsers);
+router.get(api.TEST_DATA, usersController.getAllUsers);
+router.get(api.CURRENT_USER, usersController.getCurrentUser);
 
 module.exports = router;

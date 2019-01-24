@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { JwtResponse } from './jwt-response';
 import { AuthLoginInfo } from './login-info';
 import { SignUpInfo } from './signup-info';
 
 import { map } from 'rxjs/operators';
-
-import { ApiRouts } from '../common/api';
-import { ICurrentUser } from '../common/models';
+import { User } from '../models/user';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -22,18 +20,25 @@ export class AuthService {
   private loginUrl = '/api/auth/signin';
   private signupUrl = '/api/auth/signup';
 
-  public currentUser: Observable<ICurrentUser>;
+  // private currentUserSubject: BehaviorSubject<User>;
 
-  constructor(
-    private http: HttpClient,
-  ) { }
+  public currentUser: Observable<User>;
+
+  constructor(private http: HttpClient) {
+    // this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.currentUserSubject.asObservable();
+  }
+
+  public get currentUserValue(): User {
+    return this.currentUserSubject.value;
+  }
 
   getTestData() {
     return this.http.get(`/api/test`);
   }
 
-  getCurrentUser(): Observable<ICurrentUser> {
-    return this.http.get<ICurrentUser>(ApiRouts.CURRENT_USER);
+  getCurrentUser() {
+    return this.http.get(`/api/test`);
   }
 
   attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {
@@ -51,6 +56,7 @@ export class AuthService {
         if (user && user.token) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
+          this.currentUserSubject.next(user);
         }
 
         return user;
@@ -60,5 +66,9 @@ export class AuthService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
   }
 }
+
+
+const currentUser = this.authService.currentUserValue;

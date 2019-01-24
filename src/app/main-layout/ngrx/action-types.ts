@@ -1,5 +1,5 @@
 export enum ActionTypes {
-  Increment = '[Counter Component] Increment',
-  Decrement = '[Counter Component] Decrement',
-  Reset = '[Counter Component] Reset',
+  INCREMENT = '[Counter Component] Increment',
+  DECREMENT = '[Counter Component] Decrement',
+  RESET = '[Counter Component] Reset',
 }

@@ -1,11 +1,11 @@
 ﻿import { Component, OnInit } from '@angular/core';
 
-import { User } from '../models/user';
+import { ICurrentUser } from '../common/models';
 import { AuthService } from '../auth/auth.service';
 
 @Component({ templateUrl: 'admin.component.html' })
 export class AdminComponent implements OnInit {
-  users: User[] = [];
+  users: ICurrentUser[] = [];
 
   constructor(private authService: AuthService) { }
 

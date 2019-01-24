@@ -2,6 +2,26 @@ const { Pool } = require('pg');
 const serverConfig = require('../config');
 const pool = new Pool(serverConfig.db);
 
+exports.getCurrentUser = (req, res, next) => {
+  pool.connect((err, client, release) => {
+    if (err) {
+      console.error('Error acquiring client', err.stack);
+      return res.status(500).json(err.stack);
+    }
+
+    client.query('SELECT name, surename, role, email FROM users WHERE email = $1', ['tony_stark@mail.com'], (err, result) => {
+      release();
+
+      if (err) {
+        console.error('Error executing query', err.stack);
+        return res.status(500).json(err.stack);
+      }
+
+      return res.status(200).json(result.rows[0]);
+    });
+  });
+};
+
 exports.getAllUsers = (req, res, next) => {
   pool.connect((err, client, release) => {
     if (err) {
@@ -9,7 +29,7 @@ exports.getAllUsers = (req, res, next) => {
       return res.status(500).json(err.stack);
     }
 
-    client.query('SELECT name, surename, role, email FROM "users"', (err, result) => {
+    client.query('SELECT name, surename, role, email FROM users', (err, result) => {
       release();
 
       if (err) {

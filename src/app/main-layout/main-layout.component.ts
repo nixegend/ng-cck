@@ -3,10 +3,11 @@ import { Observable } from 'rxjs';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { Store, select } from '@ngrx/store';
 import { Increment, Decrement, Reset } from './ngrx/actions';
+import { StartLoadCurrentUserInfo } from '../auth/ngrx/actions';
 import { Router } from '@angular/router';
 
-import { Role } from '../models/role';
-import { User } from '../models/user';
+import { UserRole } from '../common/user-roles';
+import { ICurrentUser } from '../common/models';
 import { TokenStorageService } from '../auth/token-storage.service';
 
 import { SignInFormComponent } from '../sign-in-form/sign-in-form.component';
@@ -18,7 +19,7 @@ import { SignInFormComponent } from '../sign-in-form/sign-in-form.component';
 export class MainLayoutComponent implements OnInit {
   count$: Observable<number>;
 
-  currentUser: User;
+  currentUser: ICurrentUser;
   signInFormDialogRef: MatDialogRef<SignInFormComponent>;
   // private roles: string[];
   private authority: string;
@@ -50,7 +51,7 @@ export class MainLayoutComponent implements OnInit {
   }
 
   get isAdmin() {
-    return this.currentUser && this.currentUser.role === Role.Admin;
+    return this.currentUser && this.currentUser.role === UserRole.ADMIN;
   }
 
   logout() {
@@ -60,6 +61,8 @@ export class MainLayoutComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.tokenStorage.getToken());
+
+    this.store.dispatch(new StartLoadCurrentUserInfo());
 
     if (this.tokenStorage.getToken()) {
       // this.roles = this.tokenStorage.getAuthorities();
