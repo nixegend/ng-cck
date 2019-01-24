@@ -2,7 +2,6 @@
 
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
-import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { TestPageComponent } from './test-page/test-page.component'
 import { NotFoundComponent } from './not-found/not-found.component'
@@ -24,10 +23,6 @@ export const routing: Routes = [
   {
     path: 'test',
     component: TestPageComponent
-  },
-  {
-    path: 'login',
-    component: LoginComponent
   },
   {
     path: 'signup',

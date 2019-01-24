@@ -20,7 +20,6 @@ import { ErrorInterceptor } from './auth/error.interceptor';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
-import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './not-found/not-found.component'
 import { TestPageComponent } from './test-page/test-page.component';
@@ -52,7 +51,6 @@ import { environment } from '../environments/environment';
     MainLayoutComponent,
     HomeComponent,
     AdminComponent,
-    LoginComponent,
     RegisterComponent,
     NotFoundComponent,
     TestPageComponent],
