@@ -11,6 +11,7 @@ import { ICurrentUser } from '../common/models';
 import { TokenStorageService } from '../auth/token-storage.service';
 
 import { SignInFormComponent } from '../sign-in-form/sign-in-form.component';
+import { SignUpFormComponent } from '../sign-up-form/sign-up-form.component';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ export class MainLayoutComponent implements OnInit {
 
   currentUser: ICurrentUser;
   signInFormDialogRef: MatDialogRef<SignInFormComponent>;
+  signUpFormDialogRef: MatDialogRef<SignUpFormComponent>;
   // private roles: string[];
   private authority: string;
 
@@ -36,6 +38,10 @@ export class MainLayoutComponent implements OnInit {
 
   openSignInFormDialog() {
     this.signInFormDialogRef = this.dialog.open(SignInFormComponent);
+  }
+
+  openSignUpFormDialog() {
+    this.signUpFormDialogRef = this.dialog.open(SignUpFormComponent);
   }
 
   increment() {

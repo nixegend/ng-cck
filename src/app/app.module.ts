@@ -51,13 +51,13 @@ import { environment } from '../environments/environment';
   ],
   declarations: [
     SignInFormComponent,
+    SignUpFormComponent,
     MainLayoutComponent,
     HomeComponent,
     AdminComponent,
-    SignUpFormComponent,
     NotFoundComponent,
     TestPageComponent],
-    entryComponents: [SignInFormComponent],
+    entryComponents: [SignInFormComponent, SignUpFormComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }

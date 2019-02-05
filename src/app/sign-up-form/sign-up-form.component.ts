@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from '../auth/auth.service';
-import { SignUpInfo } from '../auth/signup-info';
+import { SignUpInfo } from './signup-info';
+import { ISignUpUserInfo } from './models';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -10,7 +11,7 @@ import { SignUpInfo } from '../auth/signup-info';
 })
 export class SignUpFormComponent implements OnInit {
   form: any = {};
-  signupInfo: SignUpInfo;
+  signupInfo: ISignUpUserInfo;
   isSignedUp = false;
   isSignUpFailed = false;
   errorMessage = '';
@@ -22,11 +23,7 @@ export class SignUpFormComponent implements OnInit {
   onSubmit() {
     console.log(this.form);
 
-    this.signupInfo = new SignUpInfo(
-      this.form.name,
-      this.form.username,
-      this.form.email,
-      this.form.password);
+    this.signupInfo = new SignUpInfo(this.form.name, this.form.surname, this.form.email, this.form.password);
 
     this.authService.signUp(this.signupInfo).subscribe(
       data => {
