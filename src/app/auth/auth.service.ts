@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { JwtResponse } from './jwt-response';
 import { AuthLoginInfo } from './login-info';
-import { SignUpInfo } from './signup-info';
+// import { SignUpInfo } from './signup-info';
 
 import { map } from 'rxjs/operators';
 
@@ -40,9 +40,9 @@ export class AuthService {
     return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptions);
   }
 
-  signUp(info: SignUpInfo): Observable<string> {
-    return this.http.post<string>(this.signupUrl, info, httpOptions);
-  }
+  // signUp(info: SignUpInfo): Observable<string> {
+  //   return this.http.post<string>(this.signupUrl, info, httpOptions);
+  // }
 
   login(username: string, password: string) {
     return this.http.post<any>(`/api/auth/login`, { username, password })

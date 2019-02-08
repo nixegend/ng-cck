@@ -25,17 +25,17 @@ export class SignUpFormComponent implements OnInit {
 
     this.signupInfo = new SignUpInfo(this.form.name, this.form.surname, this.form.email, this.form.password);
 
-    this.authService.signUp(this.signupInfo).subscribe(
-      data => {
-        console.log(data);
-        this.isSignedUp = true;
-        this.isSignUpFailed = false;
-      },
-      error => {
-        console.log(error);
-        this.errorMessage = error.error;
-        this.isSignUpFailed = true;
-      }
-    );
+    // this.authService.signUp(this.signupInfo).subscribe(
+    //   data => {
+    //     console.log(data);
+    //     this.isSignedUp = true;
+    //     this.isSignUpFailed = false;
+    //   },
+    //   error => {
+    //     console.log(error);
+    //     this.errorMessage = error.error;
+    //     this.isSignUpFailed = true;
+    //   }
+    // );
   }
 }
