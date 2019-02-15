@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { JwtResponse } from './jwt-response';
 import { AuthLoginInfo } from './login-info';
-// import { SignUpInfo } from './signup-info';
+import { ISignUpUserInfo } from '../common/models';
 
 import { map } from 'rxjs/operators';
 
@@ -30,6 +30,10 @@ export class AuthService {
 
   getTestData() {
     return this.http.get(`/api/test`);
+  }
+
+  signUpUser(userInfo: ISignUpUserInfo): Observable<ICurrentUser> {
+    return this.http.post<ICurrentUser>(ApiRouts.SIGNUP_USER, userInfo, httpOptions);
   }
 
   getCurrentUser(): Observable<ICurrentUser> {

@@ -20,6 +20,11 @@ export function authReducer(state: IAuthReducerState = initialState, action: Aut
     case ActionTypes.LOAD_CURRENT_USER_INFO_SUCCESS:
       return { ...state, ...action.payload, loadingStatus: LoadingStatuses.SUCCESS };
 
+    case ActionTypes.SIGNUP_USER_SUCCESS: {
+      console.log(action.payload);
+      return { ...state, ...action.payload };
+    }
+
     case ActionTypes.LOAD_CURRENT_USER_INFO_FAIL:
       return { ...initialState, loadingStatus: LoadingStatuses.FAIL };
 

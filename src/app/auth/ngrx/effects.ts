@@ -8,6 +8,9 @@ import { AuthService } from '../auth.service';
 import { ActionTypes } from './action-types';
 
 import {
+  StartSignUpUser,
+  SuccessSignUpUser,
+  FailSignUpUser,
   StartLoadCurrentUserInfo,
   FailLoadCurrentUserInfo,
   SuccessLoadCurrentUserInfo
@@ -27,6 +30,17 @@ export class AuthEffects {
         .pipe(
           map(result => new SuccessLoadCurrentUserInfo(result)),
           catchError(error => of(new FailLoadCurrentUserInfo({ error })))
+        )
+      )
+    );
+
+  @Effect()
+  signUpUser$ = this.actions$.pipe(
+      ofType<StartSignUpUser>(ActionTypes.SIGNUP_USER),
+      switchMap(action => this.authService.signUpUser(action.payload)
+        .pipe(
+          map(result => new SuccessSignUpUser(result)),
+          catchError(error => of(new FailSignUpUser({ error })))
         )
       )
     );

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AuthService } from '../auth/auth.service';
+import { StartSignUpUser } from '../auth/ngrx/actions';
+import { Store, select } from '@ngrx/store';
 import { SignUpInfo } from './signup-info';
-import { ISignUpUserInfo } from './models';
+import { ISignUpUserInfo } from '../common/models';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -16,14 +17,15 @@ export class SignUpFormComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(private store: Store<{}>) { }
 
   ngOnInit() { }
 
   onSubmit() {
-    console.log(this.form);
-
     this.signupInfo = new SignUpInfo(this.form.name, this.form.surname, this.form.email, this.form.password);
+    console.log(this.signupInfo);
+
+    this.store.dispatch(new StartSignUpUser(this.signupInfo));
 
     // this.authService.signUp(this.signupInfo).subscribe(
     //   data => {
