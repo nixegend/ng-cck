@@ -1,11 +1,11 @@
-import { UserRoleTypes } from './user-roles';
+import { UserRolesTypes } from './user-roles';
 
 export interface ICurrentUser {
   token?: string;
   name: string;
   surname: string;
   email: string;
-  role: UserRoleTypes;
+  role: UserRolesTypes;
 }
 
 export interface ISignUpUserInfo {
@@ -13,4 +13,5 @@ export interface ISignUpUserInfo {
   surname: string;
   password: string;
   email: string;
+  role: string;
 }

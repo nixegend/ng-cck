@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { MatDialogModule, MatButtonModule } from '@angular/material';
+import { MatDialogModule, MatButtonModule, MatSelectModule, MatFormFieldModule } from '@angular/material';
 import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
 
 import { routing } from './app.routing';
@@ -35,7 +35,9 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,
     HttpClientModule,
     MatDialogModule,
+    MatFormFieldModule,
     MatButtonModule,
+    MatSelectModule,
     FormsModule,
     // as main store
     StoreModule.forRoot(reducers),

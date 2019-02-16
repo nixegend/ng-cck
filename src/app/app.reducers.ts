@@ -1,7 +1,6 @@
 ﻿import { ActionReducerMap } from '@ngrx/store';
 import { routerReducer, RouterReducerState } from '@ngrx/router-store';
 import { counterReducer } from './main-layout/ngrx/reducer';
-
 import { IAuthReducerState } from './auth/auth.models';
 import { authReducer } from './auth/ngrx/reducer';
 

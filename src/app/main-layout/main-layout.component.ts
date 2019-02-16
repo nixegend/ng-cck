@@ -6,7 +6,7 @@ import { Increment, Decrement, Reset } from './ngrx/actions';
 import { StartLoadCurrentUserInfo } from '../auth/ngrx/actions';
 import { Router } from '@angular/router';
 
-import { UserRole } from '../common/user-roles';
+import { UserRoles } from '../common/user-roles';
 import { ICurrentUser } from '../common/models';
 import { TokenStorageService } from '../auth/token-storage.service';
 
@@ -57,7 +57,7 @@ export class MainLayoutComponent implements OnInit {
   }
 
   get isAdmin() {
-    return this.currentUser && this.currentUser.role === UserRole.ADMIN;
+    return this.currentUser && this.currentUser.role === UserRoles.ADMIN;
   }
 
   logout() {

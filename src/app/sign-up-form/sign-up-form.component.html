@@ -35,6 +35,15 @@
       </div>
     </div>
 
+    <mat-form-field class="user-role-select">
+      <label class="user-role-label" for="role">Role</label>
+      <mat-select [(ngModel)]="form.role" #role="ngModel" name="role">
+        <mat-option *ngFor="let role of roles" [value]="role.value">
+          {{role.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <div class="form-group">
       <button class="btn btn-primary" type="submit" [disabled]="!signUpForm.form.valid">Register</button>
     </div>

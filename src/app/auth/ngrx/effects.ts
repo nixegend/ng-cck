@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { exhaustMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-
 import { AuthService } from '../auth.service';
 import { ActionTypes } from './action-types';
 
@@ -24,9 +24,9 @@ export class AuthEffects {
   ) { }
 
   @Effect()
-  getCurrentUser$ = this.actions$.pipe(
+  public getCurrentUser$: Observable<Action> = this.actions$.pipe(
       ofType<StartLoadCurrentUserInfo>(ActionTypes.LOAD_CURRENT_USER_INFO),
-      switchMap(() => this.authService.getCurrentUser()
+      exhaustMap(() => this.authService.getCurrentUser()
         .pipe(
           map(result => new SuccessLoadCurrentUserInfo(result)),
           catchError(error => of(new FailLoadCurrentUserInfo({ error })))
@@ -35,9 +35,9 @@ export class AuthEffects {
     );
 
   @Effect()
-  signUpUser$ = this.actions$.pipe(
+  public signUpUser$: Observable<Action> = this.actions$.pipe(
       ofType<StartSignUpUser>(ActionTypes.SIGNUP_USER),
-      switchMap(action => this.authService.signUpUser(action.payload)
+      exhaustMap(action => this.authService.signUpUser(action.payload)
         .pipe(
           map(result => new SuccessSignUpUser(result)),
           catchError(error => of(new FailSignUpUser({ error })))
