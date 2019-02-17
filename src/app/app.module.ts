@@ -13,7 +13,7 @@ import { MatDialogModule, MatButtonModule, MatSelectModule, MatFormFieldModule }
 import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
 
 import { routing } from './app.routing';
-import { reducers } from './app.reducers';
+import { reducers, metaReducers } from './app.reducers';
 import { effects } from './app.effects';
 
 import { AuthInterceptor } from './auth/auth.interceptor';
@@ -40,7 +40,7 @@ import { environment } from '../environments/environment';
     MatSelectModule,
     FormsModule,
     // as main store
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot(reducers, { metaReducers }),
     RouterModule.forRoot(routing),
     EffectsModule.forRoot(effects),
     // Connects RouterModule with StoreModule

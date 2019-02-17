@@ -2,10 +2,11 @@ import { AuthTypesOfActions } from './actions';
 import { IAuthReducerState } from '../auth.models';
 import { ActionTypes } from './action-types';
 import { UserRoles } from '../../common/user-roles';
-import { LoadingStatuses } from '../../common/loading-statuses';
+import { ProcessingStatuses } from '../../common/processing-statuses';
 
 export const initialState: IAuthReducerState = {
-  loadingStatus: LoadingStatuses.INITIAL,
+  loadingStatus: ProcessingStatuses.INITIAL,
+  registrationStatus: ProcessingStatuses.INITIAL,
   name: 'unknown',
   surname: 'unknown',
   email: 'unknown',
@@ -15,18 +16,22 @@ export const initialState: IAuthReducerState = {
 export function authReducer(state: IAuthReducerState = initialState, action: AuthTypesOfActions): IAuthReducerState {
   switch (action.type) {
     case ActionTypes.LOAD_CURRENT_USER_INFO:
-      return { ...state, loadingStatus: LoadingStatuses.LOADING };
+      return { ...state, loadingStatus: ProcessingStatuses.LOADING };
 
     case ActionTypes.LOAD_CURRENT_USER_INFO_SUCCESS:
-      return { ...state, ...action.payload, loadingStatus: LoadingStatuses.SUCCESS };
+      return { ...state, ...action.payload, loadingStatus: ProcessingStatuses.SUCCESS };
 
-    case ActionTypes.SIGNUP_USER_SUCCESS: {
-      console.log(action.payload);
-      return { ...state, ...action.payload };
-    }
+    case ActionTypes.SIGNUP_USER:
+      return { ...state, registrationStatus: ProcessingStatuses.LOADING };
+
+    case ActionTypes.SIGNUP_USER_SUCCESS:
+      return { ...state, registrationStatus: ProcessingStatuses.SUCCESS };
+
+    case ActionTypes.SIGNUP_USER_FAIL:
+      return { ...state, registrationStatus: ProcessingStatuses.FAIL };
 
     case ActionTypes.LOAD_CURRENT_USER_INFO_FAIL:
-      return { ...initialState, loadingStatus: LoadingStatuses.FAIL };
+      return { ...initialState, loadingStatus: ProcessingStatuses.FAIL };
 
     default:
       return state;

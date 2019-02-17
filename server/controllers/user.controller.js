@@ -2,7 +2,6 @@ const { Pool } = require('pg');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-const { roles } = require('../models/user');
 const serverConfig = require('../config');
 const pool = new Pool(serverConfig.db);
 
@@ -41,7 +40,7 @@ exports.signIn = (req, res) => {
 
 exports.signUp = async (req, res) => {
   if (req.body.name && req.body.surname && req.body.email && req.body.password) {
-    const userData = [roles.USER, req.body.name, req.body.surname, req.body.email, bcrypt.hashSync(req.body.password, 8)];
+    const userData = [req.body.role, req.body.name, req.body.surname, req.body.email, bcrypt.hashSync(req.body.password, 8)];
 
     const client = await pool.connect();
     const user = await client.query('SELECT email FROM users WHERE email = $1', [req.body.email]);

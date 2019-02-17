@@ -13,6 +13,9 @@ import { TokenStorageService } from '../auth/token-storage.service';
 import { SignInFormComponent } from '../sign-in-form/sign-in-form.component';
 import { SignUpFormComponent } from '../sign-up-form/sign-up-form.component';
 
+import { IMainReducerState } from '../app.reducers';
+import { selectFeatureCount } from './ngrx/selectors';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'main-layout.component.html'
@@ -28,11 +31,11 @@ export class MainLayoutComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private store: Store<{ counter: number }>,
+    private store: Store<IMainReducerState>,
     private router: Router,
     private tokenStorage: TokenStorageService
   ) {
-    this.count$ = store.pipe(select('counter'));
+    this.count$ = store.pipe(select(selectFeatureCount));
     // this.authService.currentUser.subscribe(x => this.currentUser = x);
   }
 

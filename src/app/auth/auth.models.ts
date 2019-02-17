@@ -1,6 +1,7 @@
-import { LoadingStatusesTypes } from '../common/loading-statuses';
+import { ProcessingStatusesTypes } from '../common/processing-statuses';
 import { ICurrentUser } from '../common/models';
 
 export interface IAuthReducerState extends ICurrentUser {
-  loadingStatus: LoadingStatusesTypes;
+  loadingStatus: ProcessingStatusesTypes;
+  registrationStatus: ProcessingStatusesTypes;
 }

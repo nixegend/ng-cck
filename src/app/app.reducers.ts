@@ -1,13 +1,13 @@
-﻿import { ActionReducerMap } from '@ngrx/store';
+﻿import { ActionReducerMap, ActionReducer, MetaReducer } from '@ngrx/store';
 import { routerReducer, RouterReducerState } from '@ngrx/router-store';
-import { counterReducer } from './main-layout/ngrx/reducer';
+import { counterReducer, INumReducerState } from './main-layout/ngrx/reducer';
 import { IAuthReducerState } from './auth/auth.models';
 import { authReducer } from './auth/ngrx/reducer';
 
 export interface IMainReducerState {
   router: RouterReducerState;
   auth: IAuthReducerState;
-  counter: number;
+  counter: INumReducerState;
 }
 
 export const reducers: ActionReducerMap<IMainReducerState> = {
@@ -15,3 +15,18 @@ export const reducers: ActionReducerMap<IMainReducerState> = {
   router: routerReducer,
   counter: counterReducer
 }
+
+export const getAuthReducerState = (state: IMainReducerState) => state.auth;
+export const getCounterReducerState = (state: IMainReducerState) => state.counter;
+export const getRouterReducerState = (state: IMainReducerState) => state.router;
+
+export function debugNgrx(reducer: ActionReducer<any>): ActionReducer<any> {
+  return function (state, action) {
+    console.log('state', state);
+    console.log('action', action);
+
+    return reducer(state, action);
+  };
+}
+
+export const metaReducers: MetaReducer<any>[] = [debugNgrx];
