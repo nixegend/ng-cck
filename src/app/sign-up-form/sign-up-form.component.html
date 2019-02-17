@@ -1,4 +1,5 @@
 <div class="row" style="width:350px;">
+  <p>{{ currentRegistrationState$ | async }}</p>
   <form name="form" (ngSubmit)="onSubmit()" #signUpForm="ngForm" novalidate class="col-sm-12">
     <div class="form-group">
       <label for="name">Name</label>
@@ -28,7 +29,8 @@
 
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel" required minlength="3" />
+      <input type="password" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel"
+        required minlength="3" />
       <div *ngIf="signUpForm.submitted && password.invalid">
         <div *ngIf="password.errors.required" class="alert alert-danger">Password is required</div>
         <div *ngIf="password.errors.minlength" class="alert alert-danger">Password must be at least 6 characters</div>

@@ -32,8 +32,8 @@ export class AuthService {
     return this.http.get(`/api/test`);
   }
 
-  signUpUser(userInfo: ISignUpUserInfo): Observable<ICurrentUser> {
-    return this.http.post<ICurrentUser>(ApiRouts.SIGNUP_USER, userInfo, httpOptions);
+  signUpUser(userInfo: ISignUpUserInfo): Observable<any> {
+    return this.http.post<any>(ApiRouts.SIGNUP_USER, userInfo, httpOptions);
   }
 
   getCurrentUser(): Observable<ICurrentUser> {

@@ -22,8 +22,8 @@ export const getRouterReducerState = (state: IMainReducerState) => state.router;
 
 export function debugNgrx(reducer: ActionReducer<any>): ActionReducer<any> {
   return function (state, action) {
-    console.log('state', state);
     console.log('action', action);
+    console.log('state', state);
 
     return reducer(state, action);
   };

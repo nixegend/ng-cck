@@ -50,7 +50,7 @@ exports.signUp = async (req, res) => {
       res.status(500).json({ message: 'This user is already registered!' });
     } else {
       client.query('INSERT INTO users (role, name, surname, email, password) VALUES ($1, $2, $3, $4, $5)', userData);
-      res.status(200).json({ message: `User "${req.body.email}" has been registered successfully!` });
+      res.status(200).json({ message: `User '${req.body.email}' has been registered successfully!` });
     }
 
     client.release();
@@ -82,7 +82,7 @@ exports.getCurrentUser = (req, res, next) => {
 
 exports.getTestData = (req, res, next) => {
   pool.query('SELECT name, surname, role, email FROM users')
-    .then(result => res.status(200).send(result.rows))
+    .then(result => res.status(200).send(result.rows[0]))
     .catch(err => res.status(500).send(err.stack));
 };
 

@@ -29,6 +29,6 @@ const api = require('./constants/api');
 
 router.post(api.SIGNUP_USER, userController.signUp);
 router.get(api.TEST_DATA, userController.getTestData);
-router.get(api.CURRENT_USER, userController.getCurrentUser);
+router.get(api.CURRENT_USER, userController.getTestData);
 
 module.exports = router;

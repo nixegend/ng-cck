@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { exhaustMap, map, catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { map, switchMap, distinctUntilChanged, catchError, mergeMap } from 'rxjs/operators';
+import { of, Observable } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { AuthService } from '../auth.service';
 import { ActionTypes } from './action-types';
 
 import {
-  StartSignUpUser,
-  SuccessSignUpUser,
-  FailSignUpUser,
+  StartUserRegistration,
+  SuccessUserRegistration,
+  FailUserRegistration,
   StartLoadCurrentUserInfo,
   FailLoadCurrentUserInfo,
   SuccessLoadCurrentUserInfo
@@ -25,23 +24,22 @@ export class AuthEffects {
 
   @Effect()
   public getCurrentUser$: Observable<Action> = this.actions$.pipe(
-      ofType<StartLoadCurrentUserInfo>(ActionTypes.LOAD_CURRENT_USER_INFO),
-      exhaustMap(() => this.authService.getCurrentUser()
-        .pipe(
-          map(result => new SuccessLoadCurrentUserInfo(result)),
-          catchError(error => of(new FailLoadCurrentUserInfo({ error })))
-        )
-      )
-    );
+    ofType<StartLoadCurrentUserInfo>(ActionTypes.LOAD_CURRENT_USER_INFO),
+    switchMap(() => this.authService.getCurrentUser().pipe(
+      map(result => new SuccessLoadCurrentUserInfo(result)),
+      catchError(error => of(new FailLoadCurrentUserInfo({ error })))
+    )
+    )
+  );
 
   @Effect()
   public signUpUser$: Observable<Action> = this.actions$.pipe(
-      ofType<StartSignUpUser>(ActionTypes.SIGNUP_USER),
-      exhaustMap(action => this.authService.signUpUser(action.payload)
-        .pipe(
-          map(result => new SuccessSignUpUser(result)),
-          catchError(error => of(new FailSignUpUser({ error })))
-        )
-      )
-    );
+    ofType<StartUserRegistration>(ActionTypes.REGISTRATION_OF_USER),
+    distinctUntilChanged((x, y) => x.payload === y.payload),
+    mergeMap((action: StartUserRegistration) => this.authService.signUpUser(action.payload).pipe(
+      map(result => new SuccessUserRegistration(result)),
+      catchError(error => of(new FailUserRegistration({ error })))
+    )
+    )
+  );
 }

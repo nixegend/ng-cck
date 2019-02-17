@@ -3,21 +3,21 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ActionTypes } from './action-types';
 import { ICurrentUser, ISignUpUserInfo } from '../../common/models';
 
-export class StartSignUpUser implements Action {
-  readonly type = ActionTypes.SIGNUP_USER;
+export class StartUserRegistration implements Action {
+  readonly type = ActionTypes.REGISTRATION_OF_USER;
   constructor(public payload: ISignUpUserInfo) { }
 }
 
-export class SuccessSignUpUser implements Action {
-  readonly type = ActionTypes.SIGNUP_USER_SUCCESS;
-  constructor(public payload: ICurrentUser) { }
+export class SuccessUserRegistration implements Action {
+  readonly type = ActionTypes.REGISTRATION_OF_USER_SUCCESS;
+  constructor(public payload: any) { }
 }
 
-export class FailSignUpUser implements Action {
-  readonly type = ActionTypes.SIGNUP_USER_FAIL;
+export class FailUserRegistration implements Action {
+  readonly type = ActionTypes.REGISTRATION_OF_USER_FAIL;
   constructor(readonly payload: { error: HttpErrorResponse }) { }
 }
-// =========================================================================
+
 export class StartLoadCurrentUserInfo implements Action {
   readonly type = ActionTypes.LOAD_CURRENT_USER_INFO;
 }
@@ -33,9 +33,9 @@ export class FailLoadCurrentUserInfo implements Action {
 }
 
 export type AuthTypesOfActions =
-  SuccessSignUpUser
-  | SuccessSignUpUser
-  | FailSignUpUser
+  StartUserRegistration
+  | SuccessUserRegistration
+  | FailUserRegistration
   | StartLoadCurrentUserInfo
   | SuccessLoadCurrentUserInfo
   | FailLoadCurrentUserInfo;

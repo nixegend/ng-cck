@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-
-import { StartSignUpUser } from '../auth/ngrx/actions';
+import { Observable } from 'rxjs';
+import { StartUserRegistration } from '../auth/ngrx/actions';
 import { Store, select } from '@ngrx/store';
 import { SignUpInfo } from './signup-info';
 import { ISignUpUserInfo } from '../common/models';
+import { ProcessingStatusesTypes } from '../common/processing-statuses';
 import { UserRoles } from '../common/user-roles';
+
+import { IMainReducerState } from '../app.reducers';
+import { getAuthRegistrationState } from './selectors';
 
 interface Roles {
   value: string;
@@ -17,6 +21,8 @@ interface Roles {
   styleUrls: ['./sign-up-form.component.scss']
 })
 export class SignUpFormComponent implements OnInit {
+  currentRegistrationState$: Observable<ProcessingStatusesTypes>;
+
   form: any = {
     role: UserRoles.USER
   };
@@ -31,7 +37,11 @@ export class SignUpFormComponent implements OnInit {
     { value: UserRoles.ADMIN, viewValue: UserRoles.ADMIN },
   ];
 
-  constructor(private store: Store<{}>) { }
+  constructor(
+    private store: Store<IMainReducerState>,
+  ) {
+    this.currentRegistrationState$ = store.pipe(select(getAuthRegistrationState));
+  }
 
   ngOnInit() { }
 
@@ -39,6 +49,6 @@ export class SignUpFormComponent implements OnInit {
     this.signupInfo = new SignUpInfo(this.form.name, this.form.surname, this.form.email, this.form.password, this.form.role);
     console.log(this.signupInfo);
 
-    this.store.dispatch(new StartSignUpUser(this.signupInfo));
+    this.store.dispatch(new StartUserRegistration(this.signupInfo));
   }
 }

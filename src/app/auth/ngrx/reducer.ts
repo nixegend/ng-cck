@@ -21,13 +21,13 @@ export function authReducer(state: IAuthReducerState = initialState, action: Aut
     case ActionTypes.LOAD_CURRENT_USER_INFO_SUCCESS:
       return { ...state, ...action.payload, loadingStatus: ProcessingStatuses.SUCCESS };
 
-    case ActionTypes.SIGNUP_USER:
+    case ActionTypes.REGISTRATION_OF_USER:
       return { ...state, registrationStatus: ProcessingStatuses.LOADING };
 
-    case ActionTypes.SIGNUP_USER_SUCCESS:
+    case ActionTypes.REGISTRATION_OF_USER_SUCCESS:
       return { ...state, registrationStatus: ProcessingStatuses.SUCCESS };
 
-    case ActionTypes.SIGNUP_USER_FAIL:
+    case ActionTypes.REGISTRATION_OF_USER_FAIL:
       return { ...state, registrationStatus: ProcessingStatuses.FAIL };
 
     case ActionTypes.LOAD_CURRENT_USER_INFO_FAIL:
