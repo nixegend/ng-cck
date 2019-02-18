@@ -15,17 +15,17 @@ exports.signIn = (req, res) => {
     const user = result.rows[0];
 
     if (!user) {
-      res.status(404).json({ accessToken: null, reason: 'User Not Found.' });
+      res.status(404).json({ message: 'User Not Found.' });
     }
 
     const isValidPassword = bcrypt.compareSync(req.body.password, user.password);
 
     if (!isValidPassword) {
-      res.status(401).json({ accessToken: null, reason: 'Invalid Password!' });
+      res.status(401).json({ message: 'Invalid Password.' });
     }
 
     const token = jwt.sign({ email: user.email, role: user.role }, serverConfig.jwtSecret, {
-      expiresIn: 86400 // expires in 24 hours
+      expiresIn: 180 // expires in 3 minutes
     });
 
     res.status(200).json({

@@ -69,7 +69,7 @@ export class MainLayoutComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.tokenStorage.getToken());
+    // console.log(this.tokenStorage.getToken());
 
     this.store.dispatch(new StartLoadCurrentUserInfo());
 

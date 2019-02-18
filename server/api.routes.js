@@ -28,7 +28,10 @@ const api = require('./constants/api');
 // router.get('/api/test/admin', [authJwt.verifyToken, authJwt.isAdmin], controller.adminBoard);
 
 router.post(api.SIGNUP_USER, userController.signUp);
-router.get(api.TEST_DATA, userController.getTestData);
+router.post(api.SIGNIN_USER, userController.signIn);
+
 router.get(api.CURRENT_USER, userController.getTestData);
+
+router.get(api.TEST_DATA, userController.getTestData);
 
 module.exports = router;
