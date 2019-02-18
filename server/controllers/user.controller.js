@@ -6,10 +6,10 @@ const serverConfig = require('../config');
 const pool = new Pool(serverConfig.db);
 
 exports.signIn = (req, res) => {
-  pool.query('SELECT name, surname, role, email FROM users WHERE email = $1 AND name = $2', [req.body.email, req.body.name], (err, result) => {
-    if (err) {
-      console.error('Error executing query', err.stack);
-      res.status(500).send(err.stack);
+  pool.query('SELECT * FROM users WHERE email = $1', [req.body.email], (errPool, result) => {
+    if (errPool) {
+      console.error('Error executing query', errPool.stack);
+      res.status(500).send(errPool.stack);
     }
 
     const user = result.rows[0];
@@ -30,10 +30,10 @@ exports.signIn = (req, res) => {
 
     res.status(200).json({
       token: token,
-      name: user.name,
-      surname: user.surname,
+      email: user.email,
       role: user.role,
-      email: user.email
+      name: user.name,
+      surname: user.surname
     });
   });
 };
@@ -67,7 +67,7 @@ exports.getCurrentUser = (req, res, next) => {
       res.status(500).send(errPool.stack);
     }
 
-    client.query('SELECT name, surname, role, email FROM users WHERE email = $1', ['tony_stark@mail.com'], (errClient, result) => {
+    client.query('SELECT name, surname, role, email FROM users WHERE email = $1', [req.body.email], (errClient, result) => {
       release();
 
       if (errClient) {
@@ -75,33 +75,13 @@ exports.getCurrentUser = (req, res, next) => {
         res.status(500).send(errClient.stack);
       }
 
-      res.status(200).send(result.rows[0]);
+      res.status(200).json(result.rows[0]);
     });
   });
 };
 
-exports.getTestData = (req, res, next) => {
+exports.getAllUsers = (req, res, next) => {
   pool.query('SELECT name, surname, role, email FROM users')
     .then(result => res.status(200).send(result.rows[0]))
     .catch(err => res.status(500).send(err.stack));
 };
-
-// exports.getTestData = (req, res, next) => {
-  // pool.connect((err, client, release) => {
-  //   if (err) {
-  //     console.error('Error acquiring client', err.stack);
-  //     res.status(500).send(err.stack);
-  //   }
-
-  //   client.query('SELECT name, surname, role, email FROM users', (err, result) => {
-  //     release();
-
-  //     if (err) {
-  //       console.error('Error executing query', err.stack);
-  //       res.status(500).send(err.stack);
-  //     }
-
-  //     res.status(200).send(result.rows);
-  //   });
-  // });
-// };

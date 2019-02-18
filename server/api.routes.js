@@ -1,25 +1,18 @@
 const express = require('express');
-// const multer = require('multer');
-
 // const authJwt = require('./utils/verifyJwtToken');
 // const verifySignUp = require('./utils/verifySignUp');
 const userController = require('./controllers/user.controller');
 
-// const upload = multer(); // for parsing multipart/form-data
 const router = express.Router();
 
 const api = require('./constants/api');
 
-// router.route(`${api.GLSL_PROGRAMS_URL_PART}/:id`)
-//   .get(GlslPrograms.getFullOrPartOfGLSLProgramById)
-//   .put(GlslPrograms.updateGLSLProgramById)
-//   .delete(GlslPrograms.removeGLSLProgramById);
-
-// router.post('/register',
+// router.route(path)
+//   .get()
+//   .put()
+//   .delete();
 
 // router.post('/api/auth/signup', [verifySignUp.checkDuplicateUserNameOrEmail, verifySignUp.checkRolesExisted], controller.signup);
-
-// router.post('/api/auth/signin', controller.signin);
 
 // router.get('/api/test/user', [authJwt.verifyToken], controller.userContent);
 
@@ -30,8 +23,8 @@ const api = require('./constants/api');
 router.post(api.SIGNUP_USER, userController.signUp);
 router.post(api.SIGNIN_USER, userController.signIn);
 
-router.get(api.CURRENT_USER, userController.getTestData);
+router.get(api.CURRENT_USER, userController.getCurrentUser);
 
-router.get(api.TEST_DATA, userController.getTestData);
+router.get(api.ALL_USERS, userController.getAllUsers);
 
 module.exports = router;

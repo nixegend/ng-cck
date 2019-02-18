@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { Store, select } from '@ngrx/store';
 import { Increment, Decrement, Reset } from './ngrx/actions';
-import { StartLoadCurrentUserInfo } from '../auth/ngrx/actions';
+// import { StartLoadCurrentUserInfo } from '../auth/ngrx/actions';
 import { Router } from '@angular/router';
 
 import { UserRoles } from '../common/user-roles';
@@ -71,7 +71,7 @@ export class MainLayoutComponent implements OnInit {
   ngOnInit() {
     // console.log(this.tokenStorage.getToken());
 
-    this.store.dispatch(new StartLoadCurrentUserInfo());
+    // this.store.dispatch(new StartLoadCurrentUserInfo());
 
     if (this.tokenStorage.getToken()) {
       // this.roles = this.tokenStorage.getAuthorities();
