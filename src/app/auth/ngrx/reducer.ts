@@ -16,13 +16,13 @@ export const initialState: IAuthReducerState = {
 export function authReducer(state: IAuthReducerState = initialState, action: AuthTypesOfActions): IAuthReducerState {
   switch (action.type) {
     case ActionTypes.LOAD_CURRENT_USER_INFO:
-      return { ...state, loadingStatus: ProcessingStatuses.LOADING };
+      return { ...state, loadingStatus: ProcessingStatuses.PENDING };
 
     case ActionTypes.LOAD_CURRENT_USER_INFO_SUCCESS:
       return { ...state, ...action.payload, loadingStatus: ProcessingStatuses.SUCCESS };
 
     case ActionTypes.REGISTRATION_OF_USER:
-      return { ...state, registrationStatus: ProcessingStatuses.LOADING };
+      return { ...state, registrationStatus: ProcessingStatuses.PENDING };
 
     case ActionTypes.REGISTRATION_OF_USER_SUCCESS:
       return { ...state, registrationStatus: ProcessingStatuses.SUCCESS };

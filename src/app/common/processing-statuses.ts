@@ -1,8 +1,8 @@
 export enum ProcessingStatuses {
   INITIAL = 'Initial',
-  LOADING = 'Loading',
+  PENDING = 'Pending',
   SUCCESS = 'Success',
   FAIL = 'Fail'
 }
 
-export type ProcessingStatusesTypes = 'Initial' | 'Loading' | 'Success' | 'Fail';
+export type ProcessingStatusesTypes = 'Initial' | 'Pending' | 'Success' | 'Fail';

@@ -21,21 +21,14 @@ interface Roles {
   styleUrls: ['./sign-up-form.component.scss']
 })
 export class SignUpFormComponent implements OnInit {
+  signupInfo: ISignUpUserInfo;
   currentRegistrationState$: Observable<ProcessingStatusesTypes>;
 
   form: any = {
     role: UserRoles.USER
   };
 
-  signupInfo: ISignUpUserInfo;
-  isSignedUp = false;
-  isSignUpFailed = false;
-  errorMessage = '';
-
-  roles: Roles[] = [
-    { value: UserRoles.USER, viewValue: UserRoles.USER },
-    { value: UserRoles.ADMIN, viewValue: UserRoles.ADMIN },
-  ];
+  roles: Roles[];
 
   constructor(
     private store: Store<IMainReducerState>,
@@ -43,9 +36,14 @@ export class SignUpFormComponent implements OnInit {
     this.currentRegistrationState$ = store.pipe(select(getAuthRegistrationState));
   }
 
-  ngOnInit() { }
+  ngOnInit(): void {
+    this.roles = [
+      { value: UserRoles.USER, viewValue: UserRoles.USER },
+      { value: UserRoles.ADMIN, viewValue: UserRoles.ADMIN },
+    ];
+  }
 
-  onSubmit() {
+  onSubmit(): void {
     this.signupInfo = new SignUpInfo(this.form.name, this.form.surname, this.form.email, this.form.password, this.form.role);
     console.log(this.signupInfo);
 

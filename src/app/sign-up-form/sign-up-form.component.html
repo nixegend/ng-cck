@@ -39,7 +39,7 @@
           required minlength="3" />
         <div *ngIf="signUpForm.submitted && password.invalid">
           <div *ngIf="password.errors.required" class="alert alert-danger">Password is required</div>
-          <div *ngIf="password.errors.minlength" class="alert alert-danger">Password must be at least 6 characters</div>
+          <div *ngIf="password.errors.minlength" class="alert alert-danger">Password must be at least 3 characters</div>
         </div>
       </div>
 
@@ -53,7 +53,7 @@
       </mat-form-field>
 
       <div class="form-group">
-        <button class="btn btn-primary" type="submit" [disabled]="!signUpForm.form.valid || (currentRegistrationState$ | async) === 'Loading'">Register</button>
+        <button class="btn btn-success col-sm-12" type="submit" [disabled]="!signUpForm.form.valid || (currentRegistrationState$ | async) === 'Pending'">Register</button>
       </div>
     </form>
   </div>
