@@ -51,7 +51,13 @@ export class AuthEffects {
     ofType<StartUserLogin>(ActionTypes.AUTHENTICATION_OF_USER),
     distinctUntilChanged((x, y) => x.payload === y.payload),
     mergeMap((action: StartUserLogin) => this.authService.signInUser(action.payload).pipe(
-      map(result => new SuccessUserLogin(result)),
+      map(result => {
+        this.authService.saveToken(result.token);
+
+        delete result.token;
+
+        return new SuccessUserLogin(result);
+      }),
       catchError(error => of(new FailUserLogin({ error })))
     )
     )

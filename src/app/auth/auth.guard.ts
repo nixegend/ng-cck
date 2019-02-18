@@ -11,10 +11,10 @@ export class AuthGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    const currentUserRole = JSON.parse(sessionStorage.getItem('currentUser'));
     const roles = route.data.roles;
 
-    if (currentUser && Array.isArray(roles) && roles.indexOf(currentUser.role) !== -1) {
+    if (currentUserRole && Array.isArray(roles) && roles.indexOf(currentUserRole) !== -1) {
       return true;
     }
 

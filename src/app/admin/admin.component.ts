@@ -9,9 +9,5 @@ export class AdminComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
-  ngOnInit() {
-    this.authService.getTestData().subscribe(resp => {
-      console.log('getTestData', resp);
-    });
-  }
+  ngOnInit() { }
 }

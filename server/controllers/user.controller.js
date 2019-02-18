@@ -55,7 +55,6 @@ exports.signUp = async (req, res) => {
 
     client.release();
   } else {
-    // console.error('Error executing query');
     res.status(500).json({ message: 'Error executing query' });
   }
 };

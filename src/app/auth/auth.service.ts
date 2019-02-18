@@ -4,50 +4,45 @@ import { Observable } from 'rxjs';
 
 import { ISignUpUserInfo } from '../common/models';
 
-// import { map } from 'rxjs/operators';
-
 import { ApiRouts } from '../common/api';
 import { ICurrentUser, ISignInUserInfo } from '../common/models';
+
+const TOKEN_KEY = 'AuthToken';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
-  // public currentUser: Observable<ICurrentUser>;
   constructor(private http: HttpClient) { }
 
-  getTestData() {
-    return this.http.get(`/api/test`);
-  }
-
-  signUpUser(userInfo: ISignUpUserInfo): Observable<any> {
+  public signUpUser(userInfo: ISignUpUserInfo): Observable<any> {
     return this.http.post<any>(ApiRouts.SIGNUP_USER, userInfo, httpOptions);
   }
 
-  signInUser(credentials: ISignInUserInfo): Observable<ICurrentUser> {
+  public signInUser(credentials: ISignInUserInfo): Observable<ICurrentUser> {
     return this.http.post<ICurrentUser>(ApiRouts.SIGNIN_USER, credentials, httpOptions);
   }
 
-  getCurrentUser(): Observable<ICurrentUser> {
+  public getCurrentUser(): Observable<ICurrentUser> {
     return this.http.get<ICurrentUser>(ApiRouts.CURRENT_USER);
   }
 
-  // login(username: string, password: string) {
-  //   return this.http.post<any>(`/api/auth/login`, { username, password })
+  public clearSessionStorage() {
+    window.sessionStorage.clear();
+  }
+
+  public saveToken(token: string) {
+    window.sessionStorage.removeItem(TOKEN_KEY);
+    window.sessionStorage.setItem(TOKEN_KEY, token);
+  }
+
+  public getToken(): string {
+    return sessionStorage.getItem(TOKEN_KEY);
+  }
+
   //     .pipe(map(user => {
   //       if (user && user.token) {
   //         localStorage.setItem('currentUser', JSON.stringify(user));
-  //       }
-  //       return user;
-  //     }));
-  // }
-
-  logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
-  }
 }

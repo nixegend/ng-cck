@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 
 import { UserRoles } from '../common/user-roles';
 import { ICurrentUser } from '../common/models';
-import { TokenStorageService } from '../auth/token-storage.service';
+import { AuthService } from '../auth/auth.service';
 
 import { SignInFormComponent } from '../sign-in-form/sign-in-form.component';
 import { SignUpFormComponent } from '../sign-up-form/sign-up-form.component';
@@ -33,7 +33,7 @@ export class MainLayoutComponent implements OnInit {
     private dialog: MatDialog,
     private store: Store<IMainReducerState>,
     private router: Router,
-    private tokenStorage: TokenStorageService
+    private authService: AuthService
   ) {
     this.count$ = store.pipe(select(selectFeatureCount));
     // this.authService.currentUser.subscribe(x => this.currentUser = x);
@@ -64,7 +64,7 @@ export class MainLayoutComponent implements OnInit {
   }
 
   logout() {
-    this.tokenStorage.clearSessionStorage();
+    this.authService.clearSessionStorage();
     this.router.navigate(['/login']);
   }
 
@@ -73,7 +73,7 @@ export class MainLayoutComponent implements OnInit {
 
     // this.store.dispatch(new StartLoadCurrentUserInfo());
 
-    if (this.tokenStorage.getToken()) {
+    if (this.authService.getToken()) {
       // this.roles = this.tokenStorage.getAuthorities();
       // this.roles.every(role => {
       //   if (role === 'ROLE_ADMIN') {

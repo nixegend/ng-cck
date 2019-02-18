@@ -1,7 +1,6 @@
 ﻿export enum UserRoles {
   USER = 'User',
-  ADMIN = 'Admin',
-  UNKNOWN = 'Unknown'
+  ADMIN = 'Admin'
 }
 
-export type UserRolesTypes = 'User' | 'Admin' | 'Unknown';
+export type UserRolesTypes = 'User' | 'Admin';
