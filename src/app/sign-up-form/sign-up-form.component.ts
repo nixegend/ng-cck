@@ -4,7 +4,7 @@ import { StartUserRegistration } from '../auth/ngrx/actions';
 import { Store, select } from '@ngrx/store';
 import { SignUpInfo } from './signup-info';
 import { ISignUpUserInfo } from '../common/models';
-import { ProcessingStatusesTypes } from '../common/processing-statuses';
+import { ProcessingStatusesTypes, ProcessingStatuses } from '../common/processing-statuses';
 import { UserRoles } from '../common/user-roles';
 
 import { IMainReducerState } from '../app.reducers';
