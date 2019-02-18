@@ -1,11 +1,13 @@
-<div class="row" style="width:350px;" *ngIf="(currentRegistrationState$ | async) === 'Success' else registration">
+<div class="row sign-up-form" *ngIf="(currentRegistrationState$ | async) === 'Success' else registration">
   <div class="alert alert-success">
     You have been successfully registered, please log in to the system.
   </div>
+
+  <button type="button" class="btn btn-dark col-sm-12" (click)="onCloseSignUpModalWindow()">Close</button>
 </div>
 
 <ng-template #registration>
-  <div class="row" style="width:350px;">
+  <div class="row sign-up-form">
     <form name="form" (ngSubmit)="onSubmit()" #signUpForm="ngForm" novalidate class="col-sm-12">
       <div class="form-group">
         <label for="name">Name</label>
@@ -52,8 +54,12 @@
         </mat-select>
       </mat-form-field>
 
-      <div class="form-group">
-        <button class="btn btn-success col-sm-12" type="submit" [disabled]="!signUpForm.form.valid || (currentRegistrationState$ | async) === 'Pending'">Register</button>
+      <div class="btn-group sign-up-form-footer-btns">
+        <button class="btn btn-success btn-sign-up" type="submit"
+          [disabled]="!signUpForm.form.valid || (currentRegistrationState$ | async) === 'Pending'">
+          Sign up
+        </button>
+        <button type="reset" class="btn btn-dark btn-close-sign-up-form" (click)="onCloseSignUpModalWindow()">Close</button>
       </div>
     </form>
   </div>

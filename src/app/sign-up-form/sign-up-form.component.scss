@@ -1,3 +1,7 @@
+.sign-up-form {
+  width: 320px;
+}
+
 .user-role-select {
   width: 100%;
   margin-bottom: 10px;
@@ -5,5 +9,17 @@
   .user-role-label {
     font-size: 16px;
     padding-bottom: 5px;
+  }
+}
+
+.sign-up-form-footer-btns {
+  width: 100%;
+
+  .btn-sign-up {
+    width: 70%;
+  }
+
+  .btn-close-sign-up-form {
+    width: 30%;
   }
 }

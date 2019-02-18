@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { MatDialogRef } from '@angular/material';
 import { StartUserRegistration } from '../auth/ngrx/actions';
 import { Store, select } from '@ngrx/store';
 import { SignUpInfo } from './signup-info';
@@ -32,6 +33,7 @@ export class SignUpFormComponent implements OnInit {
 
   constructor(
     private store: Store<IMainReducerState>,
+    private signUpDialog: MatDialogRef<SignUpFormComponent>
   ) {
     this.currentRegistrationState$ = store.pipe(select(getAuthRegistrationState));
   }
@@ -41,6 +43,10 @@ export class SignUpFormComponent implements OnInit {
       { value: UserRoles.USER, viewValue: UserRoles.USER },
       { value: UserRoles.ADMIN, viewValue: UserRoles.ADMIN },
     ];
+  }
+
+  onCloseSignUpModalWindow() {
+    this.signUpDialog.close();
   }
 
   onSubmit(): void {

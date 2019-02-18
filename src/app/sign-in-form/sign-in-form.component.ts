@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
@@ -7,7 +8,7 @@ import { AuthService } from '../auth/auth.service';
 @Component({
   selector: 'app-sign-in-form',
   templateUrl: './sign-in-form.component.html',
-  styleUrls: ['./sign-in-form.component.css']
+  styleUrls: ['./sign-in-form.component.scss']
 })
 export class SignInFormComponent implements OnInit {
   signInForm: FormGroup;
@@ -18,7 +19,8 @@ export class SignInFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private signInDialog: MatDialogRef<SignInFormComponent>
   ) {
     // if (this.authService.currentUserValue) {
     // this.router.navigate(['/']);
@@ -30,6 +32,10 @@ export class SignInFormComponent implements OnInit {
       email: new FormControl('', [Validators.email, Validators.required]),
       password: new FormControl('', [Validators.required]),
     });
+  }
+
+  onCloseSignInModalWindow() {
+    this.signInDialog.close();
   }
 
   // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';

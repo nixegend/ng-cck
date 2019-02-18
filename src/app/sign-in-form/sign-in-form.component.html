@@ -1,4 +1,4 @@
-<form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="sign-in-form">
   <div class="form-group">
     <label for="email">Email</label>
     <input type="text" formControlName="email" class="form-control" />
@@ -16,7 +16,8 @@
     </div>
   </div>
 
-  <div class="form-group">
-    <button [disabled]="!signInForm.valid" class="btn btn-success col-sm-12">Sign in</button>
+  <div class="btn-group sign-in-form-footer-btns">
+    <button type="submit" class="btn btn-success btn-sign-in">Sign in</button>
+    <button type="reset" class="btn btn-dark btn-close-sign-in-form" (click)="onCloseSignInModalWindow()">Close</button>
   </div>
 </form>
