@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MatDialogRef } from '@angular/material';
-import { StartUserRegistration } from '../auth/ngrx/actions';
 import { Store, select } from '@ngrx/store';
 import { SignUpInfo } from './signup-info';
-import { ISignUpUserInfo } from '../common/models';
-import { ProcessingStatusesTypes, ProcessingStatuses } from '../common/processing-statuses';
-import { UserRoles } from '../common/user-roles';
 
+import { UserRoles } from '../common/user-roles';
+import { ISignUpUserInfo } from '../common/models';
+import { StartUserRegistration } from '../auth/ngrx/actions';
 import { IMainReducerState } from '../app.reducers';
 import { getAuthRegistrationState } from './selectors';
+import { ProcessingStatusesTypes } from '../common/processing-statuses';
 
 interface Roles {
   value: string;

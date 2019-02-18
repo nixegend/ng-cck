@@ -15,3 +15,8 @@ export interface ISignUpUserInfo {
   email: string;
   role: string;
 }
+
+export interface ISignInUserInfo {
+  email: string;
+  password: string;
+}

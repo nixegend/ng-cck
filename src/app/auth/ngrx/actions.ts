@@ -1,7 +1,22 @@
 import { Action } from '@ngrx/store';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActionTypes } from './action-types';
-import { ICurrentUser, ISignUpUserInfo } from '../../common/models';
+import { ICurrentUser, ISignUpUserInfo, ISignInUserInfo } from '../../common/models';
+
+export class StartUserLogin implements Action {
+  readonly type = ActionTypes.AUTHENTICATION_OF_USER;
+  constructor(public payload: ISignInUserInfo) { }
+}
+
+export class SuccessUserLogin implements Action {
+  readonly type = ActionTypes.AUTHENTICATION_OF_USER_SUCCESS;
+  constructor(public payload: ICurrentUser) { }
+}
+
+export class FailUserLogin implements Action {
+  readonly type = ActionTypes.AUTHENTICATION_OF_USER_FAIL;
+  constructor(readonly payload: { error: HttpErrorResponse }) { }
+}
 
 export class StartUserRegistration implements Action {
   readonly type = ActionTypes.REGISTRATION_OF_USER;
@@ -33,7 +48,10 @@ export class FailLoadCurrentUserInfo implements Action {
 }
 
 export type AuthTypesOfActions =
-  StartUserRegistration
+  StartUserLogin
+  | SuccessUserLogin
+  | FailUserLogin
+  | StartUserRegistration
   | SuccessUserRegistration
   | FailUserRegistration
   | StartLoadCurrentUserInfo

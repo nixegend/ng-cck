@@ -7,6 +7,9 @@ import { AuthService } from '../auth.service';
 import { ActionTypes } from './action-types';
 
 import {
+  StartUserLogin,
+  SuccessUserLogin,
+  FailUserLogin,
   StartUserRegistration,
   SuccessUserRegistration,
   FailUserRegistration,
@@ -39,6 +42,17 @@ export class AuthEffects {
     mergeMap((action: StartUserRegistration) => this.authService.signUpUser(action.payload).pipe(
       map(result => new SuccessUserRegistration(result)),
       catchError(error => of(new FailUserRegistration({ error })))
+    )
+    )
+  );
+
+  @Effect()
+  public signInUser$: Observable<Action> = this.actions$.pipe(
+    ofType<StartUserLogin>(ActionTypes.AUTHENTICATION_OF_USER),
+    distinctUntilChanged((x, y) => x.payload === y.payload),
+    mergeMap((action: StartUserLogin) => this.authService.signInUser(action.payload).pipe(
+      map(result => new SuccessUserLogin(result)),
+      catchError(error => of(new FailUserLogin({ error })))
     )
     )
   );

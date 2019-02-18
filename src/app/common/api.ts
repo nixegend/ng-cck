@@ -3,4 +3,5 @@
 export enum ApiRouts {
   CURRENT_USER = '/api/current-user',
   SIGNUP_USER = '/api/signup',
+  SIGNIN_USER = '/api/signin',
 }

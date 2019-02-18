@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Store } from '@ngrx/store';
+// import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
-import { AuthService } from '../auth/auth.service';
+import { StartUserLogin } from '../auth/ngrx/actions';
+import { IMainReducerState } from '../app.reducers';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -16,10 +18,9 @@ export class SignInFormComponent implements OnInit {
   submitted: boolean = false;
 
   constructor(
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private authService: AuthService,
+    // private route: ActivatedRoute,
+    // private router: Router,
+    private store: Store<IMainReducerState>,
     private signInDialog: MatDialogRef<SignInFormComponent>
   ) {
     // if (this.authService.currentUserValue) {
@@ -46,7 +47,8 @@ export class SignInFormComponent implements OnInit {
     if (this.signInForm.invalid) {
       this.submitted = true;
     } else {
-      console.log(this.formControls.email.value, this.formControls.password.value);
+      this.store.dispatch(new StartUserLogin({ email: this.formControls.email.value, password: this.formControls.password.value }));
+      console.log({ email: this.formControls.email.value, password: this.formControls.password.value });
     }
   }
 }
