@@ -4,6 +4,7 @@ import { ActionTypes } from './action-types';
 import { ProcessingStatuses } from '../../common/processing-statuses';
 
 export const initialState: IAuthReducerState = {
+  users: [],
   authenticationStatus: ProcessingStatuses.INITIAL,
   registrationStatus: ProcessingStatuses.INITIAL,
   name: '',
@@ -32,6 +33,9 @@ export function authReducer(state: IAuthReducerState = initialState, action: Aut
 
     case ActionTypes.REGISTRATION_OF_USER_FAIL:
       return { ...state, registrationStatus: ProcessingStatuses.FAIL };
+
+    case ActionTypes.LOAD_ALL_USERS_SUCCESS:
+      return { ...state, users: action.payload };
 
     default:
       return state;

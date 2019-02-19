@@ -3,16 +3,14 @@ import { Observable } from 'rxjs';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { Store, select } from '@ngrx/store';
 import { Increment, Decrement, Reset } from './ngrx/actions';
-// import { StartLoadCurrentUserInfo } from '../auth/ngrx/actions';
 import { Router } from '@angular/router';
 
-import { UserRoles } from '../common/user-roles';
-import { ICurrentUser } from '../common/models';
 import { AuthService } from '../auth/auth.service';
-
+import { UserRolesTypes } from '../common/user-roles';
 import { SignInFormComponent } from '../sign-in-form/sign-in-form.component';
 import { SignUpFormComponent } from '../sign-up-form/sign-up-form.component';
 
+import { getCurrentUserRole } from '../auth/ngrx/selectors';
 import { IMainReducerState } from '../app.reducers';
 import { selectFeatureCount } from './ngrx/selectors';
 
@@ -22,12 +20,10 @@ import { selectFeatureCount } from './ngrx/selectors';
 })
 export class MainLayoutComponent implements OnInit {
   count$: Observable<number>;
+  currentUserRole$: Observable<'' | UserRolesTypes>;
 
-  currentUser: ICurrentUser;
   signInFormDialogRef: MatDialogRef<SignInFormComponent>;
   signUpFormDialogRef: MatDialogRef<SignUpFormComponent>;
-  // private roles: string[];
-  private authority: string;
 
   constructor(
     private dialog: MatDialog,
@@ -36,56 +32,38 @@ export class MainLayoutComponent implements OnInit {
     private authService: AuthService
   ) {
     this.count$ = store.pipe(select(selectFeatureCount));
-    // this.authService.currentUser.subscribe(x => this.currentUser = x);
+    this.currentUserRole$ = this.store.pipe(select(getCurrentUserRole));
   }
 
-  openSignInFormDialog() {
+  openSignInFormDialog(): void {
     this.signInFormDialogRef = this.dialog.open(SignInFormComponent);
   }
 
-  openSignUpFormDialog() {
+  openSignUpFormDialog(): void {
     this.signUpFormDialogRef = this.dialog.open(SignUpFormComponent);
   }
 
-  increment() {
+  increment(): void {
     this.store.dispatch(new Increment());
   }
 
-  decrement() {
+  decrement(): void {
     this.store.dispatch(new Decrement());
   }
 
-  reset() {
+  reset(): void {
     this.store.dispatch(new Reset());
   }
 
-  get isAdmin() {
-    return this.currentUser && this.currentUser.role === UserRoles.ADMIN;
-  }
-
-  logout() {
+  logout(): void {
     this.authService.clearSessionStorage();
     this.router.navigate(['/login']);
   }
 
   ngOnInit() {
     // console.log(this.tokenStorage.getToken());
-
     // this.store.dispatch(new StartLoadCurrentUserInfo());
-
-    if (this.authService.getToken()) {
-      // this.roles = this.tokenStorage.getAuthorities();
-      // this.roles.every(role => {
-      //   if (role === 'ROLE_ADMIN') {
-      //     this.authority = 'admin';
-      //     return false;
-      //   } else if (role === 'ROLE_PM') {
-      //     this.authority = 'pm';
-      //     return false;
-      //   }
-      //   this.authority = 'user';
-      //   return true;
-      // });
-    }
+    // if (this.authService.getToken()) {
+    // }
   }
 }

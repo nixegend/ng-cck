@@ -3,14 +3,28 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ActionTypes } from './action-types';
 import { ICurrentUser, ISignUpUserInfo, ISignInUserInfo } from '../../common/models';
 
+export class StartLoadAllUsers implements Action {
+  readonly type = ActionTypes.LOAD_ALL_USERS;
+}
+
+export class SuccessLoadAllUsers implements Action {
+  readonly type = ActionTypes.LOAD_ALL_USERS_SUCCESS;
+  constructor(readonly payload: ICurrentUser[]) { }
+}
+
+export class FailLoadAllUsers implements Action {
+  readonly type = ActionTypes.LOAD_ALL_USERS_FAIL;
+  constructor(readonly payload: { error: HttpErrorResponse }) { }
+}
+
 export class StartUserLogin implements Action {
   readonly type = ActionTypes.AUTHENTICATION_OF_USER;
-  constructor(public payload: ISignInUserInfo) { }
+  constructor(readonly payload: ISignInUserInfo) { }
 }
 
 export class SuccessUserLogin implements Action {
   readonly type = ActionTypes.AUTHENTICATION_OF_USER_SUCCESS;
-  constructor(public payload: ICurrentUser) { }
+  constructor(readonly payload: ICurrentUser) { }
 }
 
 export class FailUserLogin implements Action {
@@ -20,12 +34,11 @@ export class FailUserLogin implements Action {
 
 export class StartUserRegistration implements Action {
   readonly type = ActionTypes.REGISTRATION_OF_USER;
-  constructor(public payload: ISignUpUserInfo) { }
+  constructor(readonly payload: ISignUpUserInfo) { }
 }
 
 export class SuccessUserRegistration implements Action {
   readonly type = ActionTypes.REGISTRATION_OF_USER_SUCCESS;
-  constructor(public payload: any) { }
 }
 
 export class FailUserRegistration implements Action {
@@ -39,7 +52,7 @@ export class StartLoadCurrentUserInfo implements Action {
 
 export class SuccessLoadCurrentUserInfo implements Action {
   readonly type = ActionTypes.LOAD_CURRENT_USER_INFO_SUCCESS;
-  constructor(public payload: ICurrentUser) { }
+  constructor(readonly payload: ICurrentUser) { }
 }
 
 export class FailLoadCurrentUserInfo implements Action {
@@ -48,7 +61,10 @@ export class FailLoadCurrentUserInfo implements Action {
 }
 
 export type AuthTypesOfActions =
-  StartUserLogin
+  StartLoadAllUsers
+  | SuccessLoadAllUsers
+  | FailLoadAllUsers
+  | StartUserLogin
   | SuccessUserLogin
   | FailUserLogin
   | StartUserRegistration

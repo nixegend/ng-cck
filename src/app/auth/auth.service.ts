@@ -25,6 +25,10 @@ export class AuthService {
     return this.http.post<ICurrentUser>(ApiRouts.SIGNIN_USER, credentials, httpOptions);
   }
 
+  public getAllUsers(): Observable<ICurrentUser[]> {
+    return this.http.get<ICurrentUser[]>(ApiRouts.ALL_USERS);
+  }
+
   public getCurrentUser(): Observable<ICurrentUser> {
     return this.http.get<ICurrentUser>(ApiRouts.CURRENT_USER);
   }

@@ -7,6 +7,9 @@ import { AuthService } from '../auth.service';
 import { ActionTypes } from './action-types';
 
 import {
+  StartLoadAllUsers,
+  SuccessLoadAllUsers,
+  FailLoadAllUsers,
   StartUserLogin,
   SuccessUserLogin,
   FailUserLogin,
@@ -26,6 +29,16 @@ export class AuthEffects {
   ) { }
 
   @Effect()
+  public getAllUser$: Observable<Action> = this.actions$.pipe(
+    ofType<StartLoadAllUsers>(ActionTypes.LOAD_ALL_USERS),
+    switchMap(() => this.authService.getAllUsers().pipe(
+      map(result => new SuccessLoadAllUsers(result)),
+      catchError(error => of(new FailLoadAllUsers({ error })))
+    )
+    )
+  );
+
+  @Effect()
   public getCurrentUser$: Observable<Action> = this.actions$.pipe(
     ofType<StartLoadCurrentUserInfo>(ActionTypes.LOAD_CURRENT_USER_INFO),
     switchMap(() => this.authService.getCurrentUser().pipe(
@@ -40,7 +53,7 @@ export class AuthEffects {
     ofType<StartUserRegistration>(ActionTypes.REGISTRATION_OF_USER),
     distinctUntilChanged((x, y) => x.payload === y.payload),
     mergeMap((action: StartUserRegistration) => this.authService.signUpUser(action.payload).pipe(
-      map(result => new SuccessUserRegistration(result)),
+      map(() => new SuccessUserRegistration()),
       catchError(error => of(new FailUserRegistration({ error })))
     )
     )

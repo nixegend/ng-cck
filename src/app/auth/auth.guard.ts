@@ -1,20 +1,28 @@
 ﻿import { Injectable } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { UserRolesTypes } from '../common/user-roles';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
-// import { AuthService } from './auth.service';
+import { getCurrentUserRole } from './ngrx/selectors';
+import { IMainReducerState } from '../app.reducers';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
+  currentUserRole: UserRolesTypes | '';
+
   constructor(
     private router: Router,
-    // private authService: AuthService
-  ) { }
+    private store: Store<IMainReducerState>
+  ) {
+    this.store.pipe(select(getCurrentUserRole)).subscribe((role: UserRolesTypes | '') => {
+      this.currentUserRole = role;
+    });
+  }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const currentUserRole = JSON.parse(sessionStorage.getItem('currentUser'));
     const roles = route.data.roles;
 
-    if (currentUserRole && Array.isArray(roles) && roles.indexOf(currentUserRole) !== -1) {
+    if (this.currentUserRole && Array.isArray(roles) && roles.indexOf(this.currentUserRole) !== -1) {
       return true;
     }
 

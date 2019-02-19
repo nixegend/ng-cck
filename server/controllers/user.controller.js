@@ -25,7 +25,7 @@ exports.signIn = (req, res) => {
     }
 
     const token = jwt.sign({ email: user.email, role: user.role }, serverConfig.jwtSecret, {
-      expiresIn: 180 // expires in 3 minutes
+      expiresIn: 300 // expires in 5 minutes
     });
 
     res.status(200).json({

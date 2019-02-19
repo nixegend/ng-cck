@@ -4,7 +4,7 @@
     <ul class="navbar-nav mr-auto">
       <a class="nav-item nav-link" routerLink="/home">Home</a>
       <a class="nav-item nav-link" routerLink="/test">Test</a>
-      <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
+      <a class="nav-item nav-link" routerLink="/admin" *ngIf="(currentUserRole$ | async) === 'Admin'">Admin</a>
     </ul>
     <div class="mt-2 mt-md-0">
       <button type="button" class="btn btn-outline-primary mr-2" (click)="openSignInFormDialog()">Sign in</button>
