@@ -47,7 +47,7 @@ exports.signUp = async (req, res) => {
 
     if (Array.isArray(user.rows) && user.rows.length) {
       console.log(user.rows);
-      res.status(500).json({ message: 'This user is already registered!' });
+      res.status(409).json({ message: 'This user is already registered!' });
     } else {
       client.query('INSERT INTO users (role, name, surname, email, password) VALUES ($1, $2, $3, $4, $5)', userData);
       res.status(200).json({ message: `User '${req.body.email}' has been registered successfully!` });

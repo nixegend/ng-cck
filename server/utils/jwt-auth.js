@@ -11,7 +11,7 @@ exports.verifyToken = (req, res, next) => {
 
   jwt.verify(token, serverConfig.jwtSecret, (err, decoded) => {
     if (err) {
-      res.status(500).json({ message: 'Fail to Authentication. Error -> ' + err });
+      res.status(401).json({ message: 'Fail to Authentication. Error -> ' + err });
     }
 
     next();
@@ -27,11 +27,11 @@ exports.isAdmin = (req, res, next) => {
 
   jwt.verify(token, serverConfig.jwtSecret, (err, decoded) => {
     if (err) {
-      res.status(500).json({ message: 'Fail to Authentication. Error -> ' + err });
+      res.status(401).json({ message: 'Fail to Authentication. Error -> ' + err });
     }
 
     if (decoded.role !== roles.ADMIN) {
-      res.status(500).json({ message: 'Invalid role for this user.' });
+      res.status(401).json({ message: 'Invalid role for this user.' });
     }
 
     next();
