@@ -9,5 +9,7 @@ export class AdminComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    
+  }
 }
