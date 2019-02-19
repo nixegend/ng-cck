@@ -1,2 +1,3 @@
 ﻿<h1>Home page</h1>
-<p class="user-role">Your role is: <strong>1</strong></p>
+<p class="user-role">Your role is: <strong>{{ currentUserRole$ | async }}</strong></p>
+<button class="btn btn-primary" type="button" (click)="onLoadAllusers()">Try to load all users)</button>

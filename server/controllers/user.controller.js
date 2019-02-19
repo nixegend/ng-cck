@@ -81,6 +81,6 @@ exports.getCurrentUser = (req, res, next) => {
 
 exports.getAllUsers = (req, res, next) => {
   pool.query('SELECT name, surname, role, email FROM users')
-    .then(result => res.status(200).send(result.rows[0]))
+    .then(result => res.status(200).json(result.rows))
     .catch(err => res.status(500).send(err.stack));
 };

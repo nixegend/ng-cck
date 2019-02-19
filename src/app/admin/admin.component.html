@@ -2,6 +2,6 @@
 <p>This page can only be accessed by administrators.</p>
 <div>
   <ul>
-    <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
+    <li *ngFor="let user of (users$ | async)">{{user.name}} {{user.surname}}</li>
   </ul>
 </div>

@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const serverConfig = require('../config');
+const { roles } = require('../models/user');
 
 exports.verifyToken = (req, res, next) => {
   const token = req.headers['x-access-token'];
@@ -29,9 +30,9 @@ exports.isAdmin = (req, res, next) => {
       res.status(500).json({ message: 'Fail to Authentication. Error -> ' + err });
     }
 
-    console.log('============================================');
-    console.log(decoded);
-    console.log('============================================');
+    if (decoded.role !== roles.ADMIN) {
+      res.status(500).json({ message: 'Invalid role for this user.' });
+    }
 
     next();
   });

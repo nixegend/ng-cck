@@ -1,20 +1,27 @@
-﻿import { Component } from '@angular/core';
-// import { first } from 'rxjs/operators';
+﻿import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
 
-// import { User } from '../models/user';
-// import { AuthService } from '../auth/auth.service';
+import { UserRolesTypes } from '../common/user-roles';
+
+import { getCurrentUserRole } from '../auth/ngrx/selectors';
+import { IMainReducerState } from '../app.reducers';
+import { StartLoadAllUsers } from '../auth/ngrx/actions';
 
 @Component({
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
-  // currentUser: User;
+export class HomeComponent implements OnInit {
+  currentUserRole$: Observable<'' | UserRolesTypes>;
 
-  // constructor(private authService: AuthService) {
-  //   this.currentUser = this.authService.currentUserValue;
-  // }
+  constructor(private store: Store<IMainReducerState>) { }
 
   ngOnInit() {
+    this.currentUserRole$ = this.store.pipe(select(getCurrentUserRole));
+  }
+
+  onLoadAllusers() {
+    this.store.dispatch(new StartLoadAllUsers());
   }
 }
