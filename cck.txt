@@ -1,0 +1,24 @@
+//////////////// Create new product type /////////////////
+
+strig machineName: 'name_name'
+strig title: '...'
+strig description: '...'
+
+////////////////// save /// add category /// cancel
+
+
+================ Create product category ==============
+
+strig title: '...'
+strig description: '...'
+
+--------------- add new field ----------------------
+
+strig fieldLabel: '...'
+strig machineName: 'field_name'
+?     dataType: ?
+strig measureUnits: '...'
+
+----------------------------------------- save field
+
+================================ save ======= cancel
