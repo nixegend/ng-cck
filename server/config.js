@@ -6,7 +6,7 @@
 module.exports = {
   host: 'localhost',
   jwtSecret: 'worldisfullofdevelopers',
-  tokenExpireTime: '6h',
+  tokenExpireTime: 3600, // hour
   port: (process.env.NODE_ENV === 'development') ? 8888 : process.env.PORT,
   origin: 'http://localhost:4200',
   src: '../src',

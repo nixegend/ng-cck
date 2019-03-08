@@ -3,7 +3,6 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { MatTabsModule } from '@angular/material/tabs';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,16 +19,16 @@ import { effects } from './app.effects';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { ErrorInterceptor } from './auth/error.interceptor';
 
-import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { HomeComponent } from './home/home.component';
-import { AdminComponent } from './admin/admin.component';
+import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
-import { NotFoundComponent } from './not-found/not-found.component'
+import { NotFoundComponent } from './not-found/not-found.component';
 import { TestPageComponent } from './test-page/test-page.component';
+import { SpinnerComponent } from './common/components/spinner/spinner.component';
+
+import { DashboardModule } from './dashboard/dashboard.module';
 
 import { environment } from '../environments/environment';
-import { SpinnerComponent } from './spinner/spinner.component';
-import { ProductTypeCreationFormComponent } from './product-type-creation-form/product-type-creation-form.component';
 
 @NgModule({
   imports: [
@@ -37,11 +36,11 @@ import { ProductTypeCreationFormComponent } from './product-type-creation-form/p
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatTabsModule,
     MatDialogModule,
     MatFormFieldModule,
     MatButtonModule,
     MatSelectModule,
+    DashboardModule,
     FormsModule,
     // as main store
     StoreModule.forRoot(reducers, { metaReducers }),
@@ -60,9 +59,7 @@ import { ProductTypeCreationFormComponent } from './product-type-creation-form/p
     SignUpFormComponent,
     MainLayoutComponent,
     HomeComponent,
-    AdminComponent,
     NotFoundComponent,
-    ProductTypeCreationFormComponent,
     SpinnerComponent,
     TestPageComponent
   ],

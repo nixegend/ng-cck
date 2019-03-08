@@ -3,9 +3,8 @@
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto">
       <a class="nav-item nav-link" routerLink="/home">Home</a>
-      <a class="nav-item nav-link" routerLink="/create-product-type">New product type</a>
       <a class="nav-item nav-link" routerLink="/test">Test</a>
-      <a class="nav-item nav-link" routerLink="/admin" *ngIf="(currentUserRole$ | async) === 'Admin'">Admin</a>
+      <a class="nav-item nav-link" routerLink="/dashboard" *ngIf="(currentUserRole$ | async) === 'Admin'">Dashboard</a>
     </ul>
     <div class="mt-2 mt-md-0">
       <button type="button" class="btn btn-outline-primary mr-2" (click)="openSignInFormDialog()">Sign in</button>

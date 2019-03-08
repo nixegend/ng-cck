@@ -15,7 +15,7 @@ import { IMainReducerState } from '../app.reducers';
 import { selectFeatureCount } from './ngrx/selectors';
 
 @Component({
-  selector: 'app-root',
+  selector: '.app-root-container',
   templateUrl: 'main-layout.component.html'
 })
 export class MainLayoutComponent implements OnInit {

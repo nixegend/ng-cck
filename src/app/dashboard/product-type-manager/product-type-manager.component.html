@@ -1,0 +1,13 @@
+<h1>Admin</h1>
+<p>This page can only be accessed by administrators.</p>
+<div>
+  <ul>
+    <li *ngFor="let user of (users$ | async)">{{user.name}} {{user.surname}}</li>
+  </ul>
+</div>
+
+<mat-tab-group>
+  <mat-tab label="First"> Content 1 </mat-tab>
+  <mat-tab label="Second"> Content 2 </mat-tab>
+  <mat-tab label="Third"> Content 3 </mat-tab>
+</mat-tab-group>
