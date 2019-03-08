@@ -1,10 +1,11 @@
 ﻿import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -26,8 +27,9 @@ import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 import { NotFoundComponent } from './not-found/not-found.component'
 import { TestPageComponent } from './test-page/test-page.component';
 
-import { environment } from '../environments/environment';;
-import { SpinnerComponent } from './spinner/spinner.component'
+import { environment } from '../environments/environment';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { ProductTypeCreationFormComponent } from './product-type-creation-form/product-type-creation-form.component';
 
 @NgModule({
   imports: [
@@ -35,6 +37,7 @@ import { SpinnerComponent } from './spinner/spinner.component'
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatTabsModule,
     MatDialogModule,
     MatFormFieldModule,
     MatButtonModule,
@@ -59,9 +62,11 @@ import { SpinnerComponent } from './spinner/spinner.component'
     HomeComponent,
     AdminComponent,
     NotFoundComponent,
-    TestPageComponent],
+    ProductTypeCreationFormComponent,
     SpinnerComponent,
-    entryComponents: [SignInFormComponent, SignUpFormComponent],
+    TestPageComponent
+  ],
+  entryComponents: [SignInFormComponent, SignUpFormComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }

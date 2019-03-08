@@ -3,9 +3,12 @@
 strig machineName: 'name_name'
 strig title: '...'
 strig description: '...'
+strig fieldLabel: '...'
+strig machineName: 'field_name'
+?     dataType: ?
+strig measureUnits: '...'
 
 ////////////////// save /// add category /// cancel
-
 
 ================ Create product category ==============
 
