@@ -59,25 +59,41 @@ exports.signUp = async (req, res) => {
   }
 };
 
-exports.getCurrentUser = (req, res, next) => {
-  pool.connect((errPool, client, release) => {
-    if (errPool) {
-      console.error('Error acquiring client', errPool.stack);
-      res.status(500).send(errPool.stack);
+exports.getCurrentUser = async (req, res, next) => {
+  const token = req.headers['x-access-token'];
+  const client = await pool.connect();
+
+  jwt.verify(token, serverConfig.jwtSecret, async (err, decoded) => {
+    if (err) {
+      res.status(401).json({ message: 'Fail to Authentication. Error -> ' + err });
+    } else {
+      const currentUser = await client.query('SELECT name, surname, role, email FROM users WHERE email = $1', [decoded.email]);
+      res.status(200).json(currentUser.rows[0]);
     }
 
-    client.query('SELECT name, surname, role, email FROM users WHERE email = $1', [req.body.email], (errClient, result) => {
-      release();
+    client.release();
 
-      if (errClient) {
-        console.error('Error executing query', errClient.stack);
-        res.status(500).send(errClient.stack);
-      }
-
-      res.status(200).json(result.rows[0]);
-    });
+    next();
   });
 };
+
+//   pool.connect((errPool, client, release) => {
+//     if (errPool) {
+//       console.error('Error acquiring client', errPool.stack);
+//       res.status(500).send(errPool.stack);
+//     }
+
+//     client.query('SELECT name, surname, role, email FROM users WHERE email = $1', [req.body.email], (errClient, result) => {
+//       release();
+
+//       if (errClient) {
+//         console.error('Error executing query', errClient.stack);
+//         res.status(500).send(errClient.stack);
+//       }
+
+//       res.status(200).json(result.rows[0]);
+//     });
+//   });
 
 exports.getAllUsers = (req, res, next) => {
   pool.query('SELECT name, surname, role, email FROM users')

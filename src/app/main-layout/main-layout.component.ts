@@ -14,6 +14,8 @@ import { getCurrentUserRole } from '../auth/ngrx/selectors';
 import { IMainReducerState } from '../app.reducers';
 import { selectFeatureCount } from './ngrx/selectors';
 
+import { StartLoadCurrentUserInfo } from '../auth/ngrx/actions';
+
 @Component({
   selector: '.app-root-container',
   templateUrl: 'main-layout.component.html'
@@ -61,9 +63,9 @@ export class MainLayoutComponent implements OnInit {
   }
 
   ngOnInit() {
-    // console.log(this.tokenStorage.getToken());
-    // this.store.dispatch(new StartLoadCurrentUserInfo());
-    // if (this.authService.getToken()) {
-    // }
+    // console.log(this.authService.getToken());
+    if (!!this.authService.getToken()) {
+      this.store.dispatch(new StartLoadCurrentUserInfo());
+    }
   }
 }
