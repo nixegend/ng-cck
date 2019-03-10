@@ -33,7 +33,7 @@ export class AuthEffects {
     ofType<StartLoadAllUsers>(ActionTypes.LOAD_ALL_USERS),
     switchMap(() => this.authService.getAllUsers().pipe(
       map(result => new SuccessLoadAllUsers(result)),
-      catchError(error => of(new FailLoadAllUsers({ error })))
+      catchError(error => of(new FailLoadAllUsers(error)))
     )
     )
   );
@@ -43,7 +43,7 @@ export class AuthEffects {
     ofType<StartLoadCurrentUserInfo>(ActionTypes.LOAD_CURRENT_USER_INFO),
     switchMap(() => this.authService.getCurrentUser().pipe(
       map(result => new SuccessLoadCurrentUserInfo(result)),
-      catchError(error => of(new FailLoadCurrentUserInfo({ error })))
+      catchError(error => of(new FailLoadCurrentUserInfo(error)))
     )
     )
   );
@@ -54,7 +54,7 @@ export class AuthEffects {
     distinctUntilChanged((x, y) => x.payload === y.payload),
     mergeMap((action: StartUserRegistration) => this.authService.signUpUser(action.payload).pipe(
       map(() => new SuccessUserRegistration()),
-      catchError(error => of(new FailUserRegistration({ error })))
+      catchError(error => of(new FailUserRegistration(error)))
     )
     )
   );
@@ -71,7 +71,7 @@ export class AuthEffects {
 
         return new SuccessUserLogin(result);
       }),
-      catchError(error => of(new FailUserLogin({ error })))
+      catchError(error => of(new FailUserLogin(error)))
     )
     )
   );

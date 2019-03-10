@@ -14,7 +14,7 @@ export class SuccessLoadAllUsers implements Action {
 
 export class FailLoadAllUsers implements Action {
   readonly type = ActionTypes.LOAD_ALL_USERS_FAIL;
-  constructor(readonly payload: { error: HttpErrorResponse }) { }
+  constructor(readonly payload: HttpErrorResponse) { }
 }
 
 export class StartUserLogin implements Action {
@@ -29,7 +29,7 @@ export class SuccessUserLogin implements Action {
 
 export class FailUserLogin implements Action {
   readonly type = ActionTypes.AUTHENTICATION_OF_USER_FAIL;
-  constructor(readonly payload: { error: HttpErrorResponse }) { }
+  constructor(readonly payload: HttpErrorResponse) { }
 }
 
 export class StartUserRegistration implements Action {
@@ -43,7 +43,7 @@ export class SuccessUserRegistration implements Action {
 
 export class FailUserRegistration implements Action {
   readonly type = ActionTypes.REGISTRATION_OF_USER_FAIL;
-  constructor(readonly payload: { error: HttpErrorResponse }) { }
+  constructor(readonly payload: HttpErrorResponse) { }
 }
 
 export class StartLoadCurrentUserInfo implements Action {
@@ -57,7 +57,7 @@ export class SuccessLoadCurrentUserInfo implements Action {
 
 export class FailLoadCurrentUserInfo implements Action {
   readonly type = ActionTypes.LOAD_CURRENT_USER_INFO_FAIL;
-  constructor(readonly payload: { error: HttpErrorResponse }) { }
+  constructor(readonly payload: HttpErrorResponse) { }
 }
 
 export class ResetCurrentUser implements Action {

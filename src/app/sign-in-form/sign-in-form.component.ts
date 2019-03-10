@@ -45,8 +45,7 @@ export class SignInFormComponent implements OnInit {
       this.submitted = true;
     } else {
       this.store.dispatch(new StartUserLogin({ email: this.formControls.email.value, password: this.formControls.password.value }));
-
-      this.currentAuthUserStatus$.pipe(take(1)).subscribe((status: ProcessingStatusesTypes) => {
+      this.currentAuthUserStatus$.subscribe((status: ProcessingStatusesTypes) => {
         this.isPending = (status === ProcessingStatuses.SUCCESS) || (status === ProcessingStatuses.PENDING);
 
         if (status === ProcessingStatuses.SUCCESS) {

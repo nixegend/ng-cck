@@ -14,3 +14,7 @@ const errorHandler = (err, req, res, next) => {
 }
 
 module.exports = errorHandler;
+
+// name = "HttpErrorResponse";
+// message: string;
+// error: any | null;

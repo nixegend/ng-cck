@@ -12,29 +12,29 @@ exports.signIn = (req, res) => {
       res.status(500).send(errPool.stack);
     }
 
-    const user = result.rows[0];
+    const user = (Array.isArray(result.rows) && result.rows.length) ? result.rows[0] : undefined;
 
     if (!user) {
       res.status(404).json({ message: 'User Not Found.' });
+    } else {
+      const isValidPassword = bcrypt.compareSync(req.body.password, user.password);
+
+      if (!isValidPassword) {
+        res.status(401).json({ message: 'Invalid Password.' });
+      } else {
+        const token = jwt.sign({ email: user.email, role: user.role }, serverConfig.jwtSecret, {
+          expiresIn: serverConfig.tokenExpireTime
+        });
+
+        res.status(200).json({
+          token: token,
+          email: user.email,
+          role: user.role,
+          name: user.name,
+          surname: user.surname
+        });
+      }
     }
-
-    const isValidPassword = bcrypt.compareSync(req.body.password, user.password);
-
-    if (!isValidPassword) {
-      res.status(401).json({ message: 'Invalid Password.' });
-    }
-
-    const token = jwt.sign({ email: user.email, role: user.role }, serverConfig.jwtSecret, {
-      expiresIn: serverConfig.tokenExpireTime
-    });
-
-    res.status(200).json({
-      token: token,
-      email: user.email,
-      role: user.role,
-      name: user.name,
-      surname: user.surname
-    });
   });
 };
 

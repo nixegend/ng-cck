@@ -1,4 +1,12 @@
 <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="sign-in-form">
+  <div class="alert alert-info">
+    <p><b>Owner: qw@qw</b> passw: 111</p>
+    <p><b>AccountOwner: qd@qd</b> passw: 222</p>
+  </div>
+
+  <div *ngIf="(currentAuthUserStatus$ | async) === 'Fail'" class="alert alert-danger">
+    Unknown error
+  </div>
 
   <cm-spinner *ngIf="isPending"></cm-spinner>
 
