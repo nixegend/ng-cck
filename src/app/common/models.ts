@@ -5,7 +5,7 @@ export interface ICurrentUser {
   name: string;
   surname: string;
   email: string;
-  role: UserRolesTypes | '';
+  role: UserRolesTypes;
 }
 
 export interface ISignUpUserInfo {

@@ -13,5 +13,7 @@ export enum ActionTypes {
 
   LOAD_ALL_USERS = 'LOAD_ALL_USERS [Auth Component]',
   LOAD_ALL_USERS_SUCCESS = 'LOAD_ALL_USERS_SUCCESS [Auth Component]',
-  LOAD_ALL_USERS_FAIL = 'LOAD_ALL_USERS_FAIL [Auth Component]'
+  LOAD_ALL_USERS_FAIL = 'LOAD_ALL_USERS_FAIL [Auth Component]',
+
+  RESET_CURRENT_USER_INFO = 'RESET_CURRENT_USER_INFO [Auth Component]'
 }

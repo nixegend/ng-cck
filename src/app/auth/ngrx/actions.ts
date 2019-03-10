@@ -60,6 +60,10 @@ export class FailLoadCurrentUserInfo implements Action {
   constructor(readonly payload: { error: HttpErrorResponse }) { }
 }
 
+export class ResetCurrentUser implements Action {
+  readonly type = ActionTypes.RESET_CURRENT_USER_INFO;
+}
+
 export type AuthTypesOfActions =
   StartLoadAllUsers
   | SuccessLoadAllUsers
@@ -72,4 +76,5 @@ export type AuthTypesOfActions =
   | FailUserRegistration
   | StartLoadCurrentUserInfo
   | SuccessLoadCurrentUserInfo
-  | FailLoadCurrentUserInfo;
+  | FailLoadCurrentUserInfo
+  | ResetCurrentUser;

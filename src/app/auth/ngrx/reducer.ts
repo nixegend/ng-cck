@@ -2,6 +2,7 @@ import { AuthTypesOfActions } from './actions';
 import { IAuthReducerState } from '../auth.models';
 import { ActionTypes } from './action-types';
 import { ProcessingStatuses } from '../../common/processing-statuses';
+import { UserRoles } from '../../common/user-roles';
 
 export const initialState: IAuthReducerState = {
   users: [],
@@ -10,7 +11,7 @@ export const initialState: IAuthReducerState = {
   name: '',
   surname: '',
   email: '',
-  role: ''
+  role: UserRoles.USER
 };
 
 export function authReducer(state: IAuthReducerState = initialState, action: AuthTypesOfActions): IAuthReducerState {
@@ -36,6 +37,9 @@ export function authReducer(state: IAuthReducerState = initialState, action: Aut
 
     case ActionTypes.LOAD_ALL_USERS_SUCCESS:
       return { ...state, users: action.payload };
+
+    case ActionTypes.RESET_CURRENT_USER_INFO:
+      return { ...state, authenticationStatus: ProcessingStatuses.INITIAL, name: '', surname: '', email: '', role: UserRoles.USER };
 
     default:
       return state;

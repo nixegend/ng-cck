@@ -8,7 +8,8 @@ import { UserRoles } from '../common/user-roles';
 import { ISignUpUserInfo } from '../common/models';
 import { StartUserRegistration } from '../auth/ngrx/actions';
 import { IMainReducerState } from '../app.reducers';
-import { getAuthRegistrationState } from './selectors';
+
+import { getAuthRegistrationState } from '../auth/ngrx/selectors';
 import { ProcessingStatusesTypes } from '../common/processing-statuses';
 
 interface Roles {
@@ -34,11 +35,11 @@ export class SignUpFormComponent implements OnInit {
   constructor(
     private store: Store<IMainReducerState>,
     private signUpDialog: MatDialogRef<SignUpFormComponent>
-  ) {
-    this.currentRegistrationState$ = store.pipe(select(getAuthRegistrationState));
-  }
+  ) { }
 
   ngOnInit(): void {
+    this.currentRegistrationState$ = this.store.pipe(select(getAuthRegistrationState));
+
     this.roles = [
       { value: UserRoles.USER, viewValue: UserRoles.USER },
       { value: UserRoles.OWNER, viewValue: UserRoles.OWNER },
@@ -46,14 +47,12 @@ export class SignUpFormComponent implements OnInit {
     ];
   }
 
-  onCloseSignUpModalWindow() {
+  protected onCloseSignUpModalWindow(): void {
     this.signUpDialog.close();
   }
 
-  onSubmit(): void {
+  protected onSubmit(): void {
     this.signupInfo = new SignUpInfo(this.form.name, this.form.surname, this.form.email, this.form.password, this.form.role);
-    console.log(this.signupInfo);
-
     this.store.dispatch(new StartUserRegistration(this.signupInfo));
   }
 }

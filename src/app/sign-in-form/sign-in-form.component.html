@@ -1,4 +1,7 @@
 <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="sign-in-form">
+
+  <cm-spinner *ngIf="isPending"></cm-spinner>
+
   <div class="form-group">
     <label for="email">Email</label>
     <input type="text" formControlName="email" class="form-control" />
@@ -17,7 +20,7 @@
   </div>
 
   <div class="btn-group sign-in-form-footer-btns">
-    <button type="submit" class="btn btn-success btn-sign-in">Sign in</button>
-    <button type="reset" class="btn btn-dark btn-close-sign-in-form" (click)="onCloseSignInModalWindow()">Close</button>
+    <button type="submit" class="btn btn-success btn-sign-in" [disabled]="isPending">Sign in</button>
+    <button type="reset" class="btn btn-dark btn-close-sign-in-form" (click)="onCloseSignInModalWindow()" [disabled]="isPending">Close</button>
   </div>
 </form>

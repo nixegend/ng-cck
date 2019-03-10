@@ -13,7 +13,7 @@ import { StartLoadAllUsers } from '../auth/ngrx/actions';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  currentUserRole$: Observable<'' | UserRolesTypes>;
+  currentUserRole$: Observable<UserRolesTypes>;
 
   constructor(private store: Store<IMainReducerState>) { }
 
