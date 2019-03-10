@@ -4,7 +4,7 @@
     <ul class="navbar-nav mr-auto">
       <a class="nav-item nav-link" routerLink="/home">Home</a>
       <a class="nav-item nav-link" routerLink="/test">Test</a>
-      <a class="nav-item nav-link" routerLink="/account" *ngIf="(currentUserRole$ | async) === 'AccountOwner'">My Account</a>
+      <a class="nav-item nav-link" routerLink="/account" *ngIf="(currentUserRole$ | async) === 'AccountOwner' || (currentUserRole$ | async) === 'Owner'">My Account</a>
       <a class="nav-item nav-link" routerLink="/dashboard" *ngIf="(currentUserRole$ | async) === 'Owner'">Dashboard</a>
     </ul>
     <div class="mt-2 mt-md-0" *ngIf="isLogged">

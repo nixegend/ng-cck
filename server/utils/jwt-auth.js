@@ -30,7 +30,7 @@ exports.isOwner = (req, res, next) => {
       res.status(401).json({ message: 'Fail to Authentication. Error -> ' + err });
     }
 
-    if (decoded.role !== roles.OWNER) {
+    if (decoded && (decoded.role !== roles.OWNER)) {
       res.status(401).json({ message: 'Invalid role for this user.' });
     }
 

@@ -1,11 +1,13 @@
 <mat-drawer-container class="example-container">
   <mat-drawer #drawer [mode]="'side'">
-    <a class="nav-item nav-link" routerLink="/dashboard/content-types-manager">Content types</a>
+    <mat-nav-list>
+      <mat-list-item>
+        <a routerLinkActive="active" class="nav-item nav-link" routerLink="/dashboard/content-types-manager">Content types</a>
+      </mat-list-item>
+    </mat-nav-list>
   </mat-drawer>
   <mat-drawer-content>
     <div>
-      <label>Sidenav mode</label>
-      <label>Has backdrop</label>
       <button mat-raised-button (click)="drawer.toggle()">Toggle drawer</button>
 
       <router-outlet></router-outlet>

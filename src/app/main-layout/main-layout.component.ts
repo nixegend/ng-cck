@@ -1,6 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { Store, select } from '@ngrx/store';
 import { Router } from '@angular/router';
@@ -35,15 +34,15 @@ export class MainLayoutComponent implements OnInit {
     private authService: AuthService
   ) { }
 
-  openSignInFormDialog(): void {
+  protected openSignInFormDialog(): void {
     this.signInFormDialogRef = this.dialog.open(SignInFormComponent);
   }
 
-  openSignUpFormDialog(): void {
+  protected openSignUpFormDialog(): void {
     this.signUpFormDialogRef = this.dialog.open(SignUpFormComponent);
   }
 
-  logout(): void {
+  protected logout(): void {
     this.authService.clearSessionStorage();
     this.store.dispatch(new ResetCurrentUser());
     this.router.navigate(['/home']);
@@ -53,7 +52,7 @@ export class MainLayoutComponent implements OnInit {
     this.count$ = this.store.pipe(select(selectFeatureCount));
     this.currentUserRole$ = this.store.pipe(select(getCurrentUserRole));
 
-    this.currentUserRole$.pipe(take(1)).subscribe((userRole: UserRolesTypes) => {
+    this.currentUserRole$.subscribe((userRole: UserRolesTypes) => {
       this.isLogged = (userRole === UserRoles.OWNER) || (userRole === UserRoles.ACCOUNT_OWNER);
     });
 
