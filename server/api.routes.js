@@ -15,6 +15,6 @@ router.post(api.SIGNUP_USER, userController.signUp);
 router.post(api.SIGNIN_USER, userController.signIn);
 
 router.get(api.CURRENT_USER, [authJwt.verifyToken], userController.getCurrentUser);
-router.get(api.ALL_USERS, [authJwt.isAdmin], userController.getAllUsers);
+router.get(api.ALL_USERS, [authJwt.isOwner], userController.getAllUsers);
 
 module.exports = router;

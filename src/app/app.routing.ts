@@ -1,7 +1,6 @@
 ﻿import { Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
-import { TestPageComponent } from './test-page/test-page.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 // import { AuthGuard } from './auth/auth.guard';
@@ -13,13 +12,17 @@ export const routing: Routes = [
     component: HomeComponent
   },
   {
-    path: 'test',
-    component: TestPageComponent
-  },
-  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'dashboard',
+    loadChildren: './dashboard/dashboard.module#DashboardModule'
+  },
+  {
+    path: 'account',
+    loadChildren: './user-account/user-account.module#UserAccountModule'
   },
   {
     path: '**',

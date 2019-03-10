@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProductTypeManagerComponent } from './product-type-manager.component';
+import { ContentTypeManagerComponent } from './content-type-manager.component';
 
-describe('ProductTypeManagerComponent', () => {
-  let component: ProductTypeManagerComponent;
-  let fixture: ComponentFixture<ProductTypeManagerComponent>;
+describe('ContentTypeManagerComponent', () => {
+  let component: ContentTypeManagerComponent;
+  let fixture: ComponentFixture<ContentTypeManagerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductTypeManagerComponent ]
+      declarations: [ ContentTypeManagerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProductTypeManagerComponent);
+    fixture = TestBed.createComponent(ContentTypeManagerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

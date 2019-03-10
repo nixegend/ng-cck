@@ -9,10 +9,10 @@ import { StartLoadAllUsers } from '../../auth/ngrx/actions';
 
 @Component({
   selector: 'app-product-type-manager',
-  templateUrl: './product-type-manager.component.html',
-  styleUrls: ['./product-type-manager.component.css']
+  templateUrl: './content-type-manager.component.html',
+  styleUrls: ['./content-type-manager.component.css']
 })
-export class ProductTypeManagerComponent implements OnInit {
+export class ContentTypeManagerComponent implements OnInit {
   users$: Observable<ICurrentUser[]>;
 
   constructor(private store: Store<IMainReducerState>) { }

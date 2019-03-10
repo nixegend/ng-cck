@@ -4,7 +4,8 @@
     <ul class="navbar-nav mr-auto">
       <a class="nav-item nav-link" routerLink="/home">Home</a>
       <a class="nav-item nav-link" routerLink="/test">Test</a>
-      <a class="nav-item nav-link" routerLink="/dashboard" *ngIf="(currentUserRole$ | async) === 'Admin'">Dashboard</a>
+      <a class="nav-item nav-link" routerLink="/dashboard">Dashboard11</a>
+      <a class="nav-item nav-link" routerLink="/dashboard" *ngIf="(currentUserRole$ | async) === 'Owner'">Dashboard</a>
     </ul>
     <div class="mt-2 mt-md-0">
       <button type="button" class="btn btn-outline-primary mr-2" (click)="openSignInFormDialog()">Sign in</button>
@@ -23,5 +24,6 @@
     <button (click)="reset()">Reset Counter</button>
 
     <router-outlet></router-outlet>
+
   </div>
 </div>

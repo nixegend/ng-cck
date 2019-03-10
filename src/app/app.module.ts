@@ -23,10 +23,7 @@ import { HomeComponent } from './home/home.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { TestPageComponent } from './test-page/test-page.component';
 import { SpinnerComponent } from './common/components/spinner/spinner.component';
-
-import { DashboardModule } from './dashboard/dashboard.module';
 
 import { environment } from '../environments/environment';
 
@@ -40,7 +37,6 @@ import { environment } from '../environments/environment';
     MatFormFieldModule,
     MatButtonModule,
     MatSelectModule,
-    DashboardModule,
     FormsModule,
     // as main store
     StoreModule.forRoot(reducers, { metaReducers }),
@@ -60,8 +56,7 @@ import { environment } from '../environments/environment';
     MainLayoutComponent,
     HomeComponent,
     NotFoundComponent,
-    SpinnerComponent,
-    TestPageComponent
+    SpinnerComponent
   ],
   entryComponents: [SignInFormComponent, SignUpFormComponent],
   providers: [

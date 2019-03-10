@@ -18,7 +18,7 @@ exports.verifyToken = (req, res, next) => {
   });
 };
 
-exports.isAdmin = (req, res, next) => {
+exports.isOwner = (req, res, next) => {
   const token = req.headers['x-access-token'];
 
   if (!token) {
@@ -30,7 +30,7 @@ exports.isAdmin = (req, res, next) => {
       res.status(401).json({ message: 'Fail to Authentication. Error -> ' + err });
     }
 
-    if (decoded.role !== roles.ADMIN) {
+    if (decoded.role !== roles.OWNER) {
       res.status(401).json({ message: 'Invalid role for this user.' });
     }
 

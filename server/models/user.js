@@ -1,4 +1,5 @@
 exports.roles = {
-  USER:'User',
-  ADMIN:'Admin'
+  USER: 'User',
+  OWNER: 'Owner',
+  ACCOUNT_OWNER: 'AccountOwner'
 }

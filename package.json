@@ -27,6 +27,8 @@
     "@ngrx/router-store": "^7.0.0",
     "@ngrx/store": "^7.0.0",
     "@ngrx/store-devtools": "^7.0.0",
+    "@ngx-translate/core": "^11.0.1",
+    "@ngx-translate/http-loader": "^4.0.0",
     "angular-oauth2-oidc": "^5.0.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
@@ -38,6 +40,7 @@
     "pg": "^7.8.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
+    "uuid": "^3.3.2",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

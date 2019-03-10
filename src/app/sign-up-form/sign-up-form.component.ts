@@ -41,7 +41,8 @@ export class SignUpFormComponent implements OnInit {
   ngOnInit(): void {
     this.roles = [
       { value: UserRoles.USER, viewValue: UserRoles.USER },
-      { value: UserRoles.ADMIN, viewValue: UserRoles.ADMIN },
+      { value: UserRoles.OWNER, viewValue: UserRoles.OWNER },
+      { value: UserRoles.ACCOUNT_OWNER, viewValue: UserRoles.ACCOUNT_OWNER },
     ];
   }
 

@@ -1,16 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { MatTabsModule } from '@angular/material/tabs';
-import { ProductTypeManagerComponent } from './product-type-manager/product-type-manager.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
+import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.component';
+import { ContentTypeManagerComponent } from './content-type-manager/content-type-manager.component';
+
 import { dashboardRoutes } from './dashboard.routing';
 
 @NgModule({
-  declarations: [ProductTypeManagerComponent],
   imports: [
-    MatTabsModule,
     CommonModule,
+    MatTabsModule,
+    MatSidenavModule,
     RouterModule.forChild(dashboardRoutes)
-  ]
+  ],
+  exports: [RouterModule],
+  declarations: [DashboardLayoutComponent, ContentTypeManagerComponent],
 })
 export class DashboardModule { }
