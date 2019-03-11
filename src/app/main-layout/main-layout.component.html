@@ -1,20 +1,20 @@
-﻿<mat-sidenav-container>
-  <mat-sidenav #sidenav mode="push">
+﻿<mat-drawer-container>
+  <mat-drawer #sidenav [mode]="'push'">
     <div class="branding">
       <a class="navbar-brand" routerLink="/home">LOGO</a>
     </div>
+
     <mat-nav-list>
-
-      <a mat-list-item *ngFor="let item of menuItems" (click)="sidenav.close()" routerLink="[item.link]"
-        routerLinkActive="active">
-        {{item.label}}
-      </a>
-
+      <mat-list-item>
+        <a routerLinkActive="active" class="nav-item nav-link" *ngFor="let item of menuItems" (click)="sidenav.close()"
+          routerLink="[item.link]" routerLinkActive="active">
+          {{item.label}}
+        </a>
+      </mat-list-item>
     </mat-nav-list>
-  </mat-sidenav>
+  </mat-drawer>
 
-  <div class="wrapper">
-
+  <mat-drawer-content>
     <header class="toolbar" [style.position]="'fixed'">
       <mat-toolbar color="primary">
         <button mat-icon-button class="d-md-none" (click)="sidenav.open()">
@@ -22,8 +22,7 @@
         </button>
 
         <span class="d-none d-md-inline">
-          <a class="nav-button" *ngFor="let item of menuItems" routerLink="[item.link]"
-            routerLinkActive="active">
+          <a class="nav-button" *ngFor="let item of menuItems" routerLink="[item.link]" routerLinkActive="active">
             {{ item.label }}
           </a>
         </span>
@@ -34,7 +33,7 @@
 
         <mat-menu #toolbarUserMenu="matMenu" *ngIf="(isAuthenticated$ | async)">
           <button type="button" mat-menu-item (click)="logout()">
-            <mat-icon>power-off</mat-icon>
+            <mat-icon>poweroff</mat-icon>
             <span>Sign out</span>
           </button>
         </mat-menu>
@@ -51,21 +50,23 @@
         </div>
 
         <span *ngIf="language$ | async as language">
-          <mat-select [ngModel]="language" (selectionChange)="onLanguageSelect($event)">
-            <mat-option *ngFor="let lng of languages" [value]="lng">
-              {{ lng }}
-            </mat-option>
-          </mat-select>
+          <mat-form-field>
+            <mat-select [ngModel]="language" (selectionChange)="onLanguageSelect($event)">
+              <mat-option *ngFor="let lng of languages" [value]="lng">
+                {{ lng }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </span>
       </mat-toolbar>
     </header>
 
     <router-outlet></router-outlet>
 
-    <div class="footer">
+    <footer class="footer">
       <div class="row">
         <div class="col-12 signature">&#169;</div>
       </div>
-    </div>
-  </div>
-</mat-sidenav-container>
+    </footer>
+  </mat-drawer-content>
+</mat-drawer-container>
