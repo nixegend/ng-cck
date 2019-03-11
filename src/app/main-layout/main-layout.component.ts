@@ -9,23 +9,29 @@ import { UserRolesTypes, UserRoles } from '../common/user-roles';
 import { SignInFormComponent } from '../sign-in-form/sign-in-form.component';
 import { SignUpFormComponent } from '../sign-up-form/sign-up-form.component';
 
-import { getCurrentUserRole } from '../auth/ngrx/selectors';
+import { getCurrentUserRole, getAuthState } from '../auth/ngrx/selectors';
 import { IMainReducerState } from '../app.reducers';
-import { selectFeatureCount } from './ngrx/selectors';
 
 import { StartLoadCurrentUserInfo, ResetCurrentUser } from '../auth/ngrx/actions';
 
 @Component({
   selector: '.app-root-container',
-  templateUrl: 'main-layout.component.html'
+  templateUrl: 'main-layout.component.html',
+  styleUrls: ['./main-layout.component.scss']
 })
 export class MainLayoutComponent implements OnInit {
-  isLogged: boolean = false;
-  count$: Observable<number>;
+  isAuthenticated$: Observable<boolean>;
   currentUserRole$: Observable<UserRolesTypes>;
 
   signInFormDialogRef: MatDialogRef<SignInFormComponent>;
   signUpFormDialogRef: MatDialogRef<SignUpFormComponent>;
+
+  languages = ['en', 'ua'];
+
+  menuItems = [
+    { link: '/home', label: 'Home' },
+    { link: '/test', label: 'Test' },
+  ];
 
   constructor(
     private dialog: MatDialog,
@@ -49,12 +55,8 @@ export class MainLayoutComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.count$ = this.store.pipe(select(selectFeatureCount));
     this.currentUserRole$ = this.store.pipe(select(getCurrentUserRole));
-
-    this.currentUserRole$.subscribe((userRole: UserRolesTypes) => {
-      this.isLogged = (userRole === UserRoles.OWNER) || (userRole === UserRoles.ACCOUNT_OWNER);
-    });
+    this.isAuthenticated$ = this.store.pipe(select(getAuthState));
 
     // console.log(this.authService.getToken());
     if (!!this.authService.getToken()) {

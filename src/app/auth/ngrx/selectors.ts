@@ -6,3 +6,4 @@ import { getAuthReducerState } from '../../app.reducers';
 export const getCurrentUserRole = createSelector(getAuthReducerState, (state: IAuthReducerState) => state.role);
 export const getCurrentAuthStatus = createSelector(getAuthReducerState, (state: IAuthReducerState) => state.authenticationStatus);
 export const getAuthRegistrationState = createSelector(getAuthReducerState, (state: IAuthReducerState) => state.registrationStatus);
+export const getAuthState = createSelector(getAuthReducerState, (state: IAuthReducerState) => state.isAuthenticated);

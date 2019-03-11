@@ -13,7 +13,7 @@ import { ContentTypeEditorComponent } from '../content-type-editor/content-type-
 @Component({
   selector: 'app-product-type-manager',
   templateUrl: './content-type-manager.component.html',
-  styleUrls: ['./content-type-manager.component.css']
+  styleUrls: ['./content-type-manager.component.scss']
 })
 export class ContentTypeManagerComponent implements OnInit {
   users$: Observable<ICurrentUser[]>;

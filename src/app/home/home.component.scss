@@ -1,5 +1,7 @@
+@import '../../variables.scss';
+
 $color-ur: #ff0000;
 
 .user-role {
-  color: $color-ur;
+  color: $bg-site-color;
 }

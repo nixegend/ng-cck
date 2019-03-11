@@ -8,6 +8,7 @@ export const initialState: IAuthReducerState = {
   users: [],
   authenticationStatus: ProcessingStatuses.INITIAL,
   registrationStatus: ProcessingStatuses.INITIAL,
+  isAuthenticated: false,
   name: '',
   surname: '',
   email: '',
@@ -21,7 +22,7 @@ export function authReducer(state: IAuthReducerState = initialState, action: Aut
 
     case ActionTypes.AUTHENTICATION_OF_USER_SUCCESS:
     case ActionTypes.LOAD_CURRENT_USER_INFO_SUCCESS:
-      return { ...state, ...action.payload, authenticationStatus: ProcessingStatuses.SUCCESS };
+      return { ...state, ...action.payload, authenticationStatus: ProcessingStatuses.SUCCESS, isAuthenticated: true };
 
     case ActionTypes.AUTHENTICATION_OF_USER_FAIL:
       return { ...initialState, authenticationStatus: ProcessingStatuses.FAIL };
@@ -39,7 +40,15 @@ export function authReducer(state: IAuthReducerState = initialState, action: Aut
       return { ...state, users: action.payload };
 
     case ActionTypes.RESET_CURRENT_USER_INFO:
-      return { ...state, authenticationStatus: ProcessingStatuses.INITIAL, name: '', surname: '', email: '', role: UserRoles.USER };
+      return {
+        ...state,
+        isAuthenticated: false,
+        authenticationStatus: ProcessingStatuses.INITIAL,
+        name: '',
+        surname: '',
+        email: '',
+        role: UserRoles.USER
+      };
 
     default:
       return state;

@@ -9,7 +9,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { MatDialogModule, MatButtonModule, MatSelectModule, MatFormFieldModule } from '@angular/material';
+import {
+  MatMenuModule,
+  MatDialogModule,
+  MatIconModule,
+  MatButtonModule,
+  MatSelectModule,
+  MatFormFieldModule,
+  MatToolbarModule,
+  MatSidenavModule,
+  MatListModule
+} from '@angular/material';
 import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
 
 import { routing } from './app.routing';
@@ -33,7 +43,12 @@ import { environment } from '../environments/environment';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatMenuModule,
+    MatSidenavModule,
     MatDialogModule,
+    MatListModule,
+    MatIconModule,
+    MatToolbarModule,
     MatFormFieldModule,
     MatButtonModule,
     MatSelectModule,
@@ -56,8 +71,7 @@ import { environment } from '../environments/environment';
     MainLayoutComponent,
     HomeComponent,
     NotFoundComponent,
-    SpinnerComponent
-  ],
+    SpinnerComponent],
   entryComponents: [SignInFormComponent, SignUpFormComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
