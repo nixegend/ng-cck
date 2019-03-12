@@ -1,178 +1,52 @@
-@import '../../variables.scss';
+@import "../../variables.scss";
 
-mat-sidenav-container {
+.main-layout-container {
+  background: #fff;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
   height: 100%;
-  width: 100%;
 
-  .toolbar {
-    position: fixed;
-    width: 100%;
+  .main-layout-content {
     display: flex;
-    z-index: 10;
 
-    .nav-button {
-      margin: 0 10px 0 0;
-    }
-
-    fa-icon {
-      font-size: 24px;
-    }
-
-    .branding {
-      cursor: pointer;
-      overflow: hidden;
-      padding-top: 4px;
-      text-overflow: ellipsis;
-
-      &.center {
-        text-align: center;
-      }
-
-      img {
-        position: relative;
-        top: -2px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-
-    .mat-stroked-button {
-      margin-right: 10px;
-    }
-
-    .spacer {
-      flex: 1 1 auto;
-    }
-
-    mat-select {
-      margin: 0 0 0 20px;
-      width: 40px;
-      font-size: 14px;
-    }
-
-    @media (max-width: $breakpoint-lg) {
-      .nav-button {
-        min-width: 0;
-        padding: 0 10px;
-      }
-    }
-  }
-
-  .wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
+    // overflow: unset;
     flex-direction: column;
 
-    .content {
-      flex: 1 0 auto;
-      margin-top: 64px;
-      overflow: hidden;
-    }
+    .main-layout-header {
+      box-shadow: 0px -2px 7px 0px #515151;
+      border-bottom: 1px solid #e1e1e1;
+      flex: 0 0 61px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
 
-    .footer {
-      flex: 0 0 auto;
-      padding: 0 15px;
-      text-align: center;
+      .mat-toolbar-row, .mat-toolbar-single-row {
+        height: 60px;
+      }
 
-      .row {
-        padding: 10px 0;
-
-        .links {
-          a {
-            transition: padding 0.5s;
-            display: inline-block;
-            padding: 20px 5px;
-
-            &:hover {
-              text-decoration: none;
-            }
-
-            fa-icon {
-              font-size: 30px;
-              width: 35px;
-            }
-
-            span {
-              display: inline-block;
-              width: 75px;
-              padding: 0 0 0 3px;
-              overflow: hidden;
-              text-align: left;
-              white-space: nowrap;
-              transition: width 0.5s;
-            }
-          }
-
-          @media (min-width: $breakpoint-lg) {
-            a {
-              padding: 20px 10px;
-            }
-          }
-
-          @media (max-width: $breakpoint-md) {
-            a {
-              padding: 20px;
-
-              span {
-                width: 0;
-                padding: 0;
-              }
-            }
-          }
-
-          @media (max-width: $breakpoint-sm) {
-            a {
-              padding: 20px 5px;
-            }
-          }
-        }
-
-        @media (min-width: $breakpoint-sm) {
-          .signature {
-            position: relative;
-
-            a {
-              position: absolute;
-              right: 15px;
-            }
-          }
-        }
+      .mat-toolbar {
+        background: #f7f7f7;
       }
     }
-  }
 
-  @media (max-width: $toolbar-breakpoint) {
-    .content {
-      margin-top: 56px !important;
+    .main-page-content {
+      display: flex;
+      flex-direction: column;
+      flex: 1 0 auto;
+      margin-top: 61px;
+    }
+
+    .main-layout-footer {
+      border-top: 1px solid #e1e1e1;
+      background: #f7f7f7;
+      min-height: 60px;
+      flex: 0 0 auto;
     }
   }
 }
 
-mat-sidenav {
-  width: 250px;
+// @media (max-width: $toolbar-breakpoint) {
 
-  .branding {
-    height: 64px;
-    padding: 8px 10px;
-    font-size: 20px;
-    font-weight: 500;
-
-    img {
-      height: 48px;
-      margin: 2px 10px 0 0;
-    }
-
-    span {
-      position: relative;
-      top: 3px;
-    }
-  }
-
-  .mat-nav-list {
-    padding-top: 0;
-  }
-}
+// }

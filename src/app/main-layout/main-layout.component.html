@@ -1,4 +1,4 @@
-﻿<mat-drawer-container>
+﻿<mat-drawer-container class="main-layout-container">
   <mat-drawer #sidenav [mode]="'push'">
     <div class="branding">
       <a class="navbar-brand" routerLink="/home">LOGO</a>
@@ -7,46 +7,44 @@
     <mat-nav-list>
       <mat-list-item>
         <a routerLinkActive="active" class="nav-item nav-link" *ngFor="let item of menuItems" (click)="sidenav.close()"
-          routerLink="[item.link]" routerLinkActive="active">
+          [routerLink]="[item.link]" routerLinkActive="active">
           {{item.label}}
         </a>
       </mat-list-item>
     </mat-nav-list>
   </mat-drawer>
 
-  <mat-drawer-content>
-    <header class="toolbar" [style.position]="'fixed'">
-      <mat-toolbar color="primary">
-        <button mat-icon-button class="d-md-none" (click)="sidenav.open()">
-          <mat-icon>menu</mat-icon>
+  <mat-drawer-content class="main-layout-content">
+    <header class="main-layout-header">
+      <mat-toolbar>
+        <button class="d-md-none" (click)="sidenav.open()">
+          <i class="icon-bars"></i>
         </button>
 
         <span class="d-none d-md-inline">
-          <a class="nav-button" *ngFor="let item of menuItems" routerLink="[item.link]" routerLinkActive="active">
+          <a class="nav-button" *ngFor="let item of menuItems" [routerLink]="[item.link]" routerLinkActive="active">
             {{ item.label }}
           </a>
         </span>
 
-        <button type="button" mat-icon-button [matMenuTriggerFor]="toolbarUserMenu" *ngIf="(isAuthenticated$ | async)">
-          <mat-icon>account_circle</mat-icon>
+        <button type="button" [matMenuTriggerFor]="toolbarUserMenu" *ngIf="(isAuthenticated$ | async)">
+          <i class="icon-user-circle-o"></i>
         </button>
 
-        <mat-menu #toolbarUserMenu="matMenu" *ngIf="(isAuthenticated$ | async)">
+        <mat-menu #toolbarUserMenu="matMenu">
           <button type="button" mat-menu-item (click)="logout()">
-            <mat-icon>poweroff</mat-icon>
+            <i class="icon-exit"></i>
             <span>Sign out</span>
           </button>
         </mat-menu>
 
-        <a mat-button routerLink="/dashboard" *ngIf="(currentUserRole$ | async) === 'Owner'">
-          <mat-icon>dashboard</mat-icon>
+        <a routerLink="/dashboard" *ngIf="(currentUserRole$ | async) === 'Owner'">
+          <i class="icon-list-alt"></i>
         </a>
 
         <div class="mt-2 mt-md-0" *ngIf="!(isAuthenticated$ | async)">
-          <button type="button" mat-button mat-stroked-button class="btn btn-outline-primary mr-2"
-            (click)="openSignInFormDialog()">Sign in</button>
-          <button type="button" mat-button mat-stroked-button class="btn btn-outline-primary"
-            (click)="openSignUpFormDialog()">Sign up</button>
+          <button type="button" class="btn btn-outline-primary mr-2" (click)="openSignInFormDialog()">Sign in</button>
+          <button type="button" class="btn btn-outline-primary" (click)="openSignUpFormDialog()">Sign up</button>
         </div>
 
         <span *ngIf="language$ | async as language">
@@ -61,12 +59,12 @@
       </mat-toolbar>
     </header>
 
-    <router-outlet></router-outlet>
+    <div class="main-page-content">
+      <router-outlet></router-outlet>
+    </div>
 
-    <footer class="footer">
-      <div class="row">
-        <div class="col-12 signature">&#169;</div>
-      </div>
+    <footer class="main-layout-footer">
+      <div class="col-12 signature">&#169;</div>
     </footer>
   </mat-drawer-content>
 </mat-drawer-container>

@@ -12,7 +12,6 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import {
   MatMenuModule,
   MatDialogModule,
-  MatIconModule,
   MatButtonModule,
   MatSelectModule,
   MatFormFieldModule,
@@ -47,7 +46,6 @@ import { environment } from '../environments/environment';
     MatSidenavModule,
     MatDialogModule,
     MatListModule,
-    MatIconModule,
     MatToolbarModule,
     MatFormFieldModule,
     MatButtonModule,
