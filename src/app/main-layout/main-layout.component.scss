@@ -9,18 +9,13 @@
 
   .main-layout-content {
     display: flex;
-
-    // overflow: unset;
     flex-direction: column;
+    overflow: unset;
 
     .main-layout-header {
       box-shadow: 0px -2px 7px 0px #515151;
       border-bottom: 1px solid #e1e1e1;
       flex: 0 0 61px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
 
       .mat-toolbar-row, .mat-toolbar-single-row {
         height: 60px;
@@ -31,18 +26,24 @@
       }
     }
 
-    .main-page-content {
+    .main-page-scroll-box {
+      flex: 1 1 auto;
       display: flex;
       flex-direction: column;
-      flex: 1 0 auto;
-      margin-top: 61px;
-    }
+      overflow-y: auto;
 
-    .main-layout-footer {
-      border-top: 1px solid #e1e1e1;
-      background: #f7f7f7;
-      min-height: 60px;
-      flex: 0 0 auto;
+      .main-page-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1 0 auto;
+      }
+
+      .main-layout-footer {
+        border-top: 1px solid #e1e1e1;
+        background: #f7f7f7;
+        min-height: 60px;
+        flex: 0 0 auto;
+      }
     }
   }
 }

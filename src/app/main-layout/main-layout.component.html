@@ -21,11 +21,11 @@
           <i class="icon-bars"></i>
         </button>
 
-        <span class="d-none d-md-inline">
-          <a class="nav-button" *ngFor="let item of menuItems" [routerLink]="[item.link]" routerLinkActive="active">
+        <nav class="d-none main-navigation">
+          <a class="m"  *ngFor="let item of menuItems" [routerLink]="[item.link]" routerLinkActive="active">
             {{ item.label }}
           </a>
-        </span>
+        </nav>
 
         <button type="button" [matMenuTriggerFor]="toolbarUserMenu" *ngIf="(isAuthenticated$ | async)">
           <i class="icon-user-circle-o"></i>
@@ -59,12 +59,15 @@
       </mat-toolbar>
     </header>
 
-    <div class="main-page-content">
-      <router-outlet></router-outlet>
+    <div class="main-page-scroll-box">
+      <div class="main-page-content">
+        <router-outlet></router-outlet>
+      </div>
+
+      <footer class="main-layout-footer">
+        <div class="col-12 signature">&#169;</div>
+      </footer>
     </div>
 
-    <footer class="main-layout-footer">
-      <div class="col-12 signature">&#169;</div>
-    </footer>
   </mat-drawer-content>
 </mat-drawer-container>
