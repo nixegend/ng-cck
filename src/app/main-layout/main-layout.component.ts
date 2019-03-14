@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { Store, select } from '@ngrx/store';
@@ -17,7 +17,8 @@ import { StartLoadCurrentUserInfo, ResetCurrentUser } from '../auth/ngrx/actions
 @Component({
   selector: '.app-root-container',
   templateUrl: 'main-layout.component.html',
-  styleUrls: ['./main-layout.component.scss']
+  styleUrls: ['./main-layout.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MainLayoutComponent implements OnInit {
   isAuthenticated$: Observable<boolean>;

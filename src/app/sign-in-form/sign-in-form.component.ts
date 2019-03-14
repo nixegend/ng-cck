@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -12,7 +12,8 @@ import { IMainReducerState } from '../app.reducers';
 @Component({
   selector: 'app-sign-in-form',
   templateUrl: './sign-in-form.component.html',
-  styleUrls: ['./sign-in-form.component.scss']
+  styleUrls: ['./sign-in-form.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SignInFormComponent implements OnInit {
   signInForm: FormGroup;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MatDialogRef } from '@angular/material';
 import { Store, select } from '@ngrx/store';
@@ -20,7 +20,8 @@ interface Roles {
 @Component({
   selector: 'app-sign-up-form',
   templateUrl: './sign-up-form.component.html',
-  styleUrls: ['./sign-up-form.component.scss']
+  styleUrls: ['./sign-up-form.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SignUpFormComponent implements OnInit {
   signupInfo: ISignUpUserInfo;

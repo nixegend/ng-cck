@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
@@ -13,7 +13,8 @@ import { ContentTypeEditorComponent } from '../content-type-editor/content-type-
 @Component({
   selector: 'app-product-type-manager',
   templateUrl: './content-type-manager.component.html',
-  styleUrls: ['./content-type-manager.component.scss']
+  styleUrls: ['./content-type-manager.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ContentTypeManagerComponent implements OnInit {
   users$: Observable<ICurrentUser[]>;
